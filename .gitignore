@@ -1,0 +1,37 @@
+led / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python build
+lmodule.egg-info/
+dist/
+build/
+
+# C extensions
+*.so
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+coverage.xml
+*.cover
+.pytest_cache/
+
+# Sphinx documentation
+docs/_build/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+
