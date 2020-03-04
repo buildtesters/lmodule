@@ -17,6 +17,8 @@ The name **lmodule** was decided by taking **Lmod** + **module** = **lmodule**.
    :maxdepth: 2
    :caption: Contents:
 
+   installation.rst
+
 
 
 Indices and tables
