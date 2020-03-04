@@ -81,16 +81,14 @@ class Module:
         """
         cmd_executed = self.get_command()
 
-        ret = subprocess.Popen(cmd_executed,shell=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        ret.communicate()
-        ec = ret.returncode
+        ret = subprocess.run(cmd_executed,shell=True, capture_output=True, encoding="utf-8")
 
         # print executed command for debugging
         if self.debug:
             print(f"[DEBUG] Executing module command: {cmd_executed}")
-            print(f"[DEBUG] Return Code: {ec}")
+            print(f"[DEBUG] Return Code: {ret.returncode}")
 
-        return ec
+        return ret.returncode
 
     def save(self, collection="default"):
         """Save active modules into a module collection.
@@ -106,17 +104,16 @@ class Module:
 
         module_save_cmd = f"{self.get_command()} && module save {collection}"
 
-        ret = subprocess.Popen(module_save_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out = ret.communicate()[0].decode("utf-8")
-        ec = ret.returncode
+        ret = subprocess.run(module_save_cmd, shell=True, capture_output=True,encoding="utf-8")
 
         # print executed command for debugging
         if self.debug:
             print(f"[DEBUG] Executing module command: {module_save_cmd}")
-            print(f"[DEBUG] Return Code: {ec}")
+            print(f"[DEBUG] Return Code: {ret.returncode}")
+
 
         print(f"Saving modules {self.modules} to module collection name: {collection}")
-        print(out)
+        print(ret.stderr)
 
     def describe(self, collection="default"):
         """Show content of a module collection.
@@ -131,17 +128,14 @@ class Module:
             raise TypeError(f"Type Error: {collection} is not of type string")
 
         module_describe_cmd = f"module describe {collection}"
-        ret = subprocess.Popen(module_describe_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out = ret.communicate()[0].decode("utf-8")
-        ec = ret.returncode
-
+        ret = subprocess.run(module_describe_cmd, shell=True, capture_output=True, encoding="utf-8")
 
         # print executed command for debugging
         if self.debug:
             print(f"[DEBUG] Executing module command: {module_describe_cmd}")
-            print(f"[DEBUG] Return Code: {ec}")
+            print(f"[DEBUG] Return Code: {ret.returncode}")
 
-        print(out)
+        print(ret.stderr)
 
     def get_collection(self, collection="default"):
         """Return the command to restore a collection.
@@ -171,13 +165,11 @@ class Module:
             raise TypeError(f"Type Error: {collection} is not of type string")
 
         module_restore_cmd = f"module restore {collection}"
-        ret = subprocess.Popen(module_restore_cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        ret.communicate()
-        ec = ret.returncode
+        ret = subprocess.run(module_restore_cmd, shell=True, capture_output=True, encoding="utf-8")
 
         # print executed command for debugging
         if self.debug:
             print(f"[DEBUG] Executing command: {module_restore_cmd}")
-            print(f"[DEBUG] Return Code: {ec}")
+            print(f"[DEBUG] Return Code: {ret.returncode}")
 
-        return ec
+        return ret.returncode
