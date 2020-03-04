@@ -1,4 +1,8 @@
-|license| |travis| |codecov| |coveralls|
+|license| |docs| |travis| |codecov| |coveralls|
+
+.. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
+    :target: https://lmodule.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 .. |travis| image:: https://travis-ci.com/HPC-buildtest/lmodule.svg?branch=master
     :target: https://travis-ci.com/HPC-buildtest/lmodule
