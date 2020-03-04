@@ -9,9 +9,10 @@ def get_all_collections():
      """
 
     collections = "module -t savelist"
-    out = subprocess.check_output(collections,shell=True).decode("utf-8")
+    ret = subprocess.run(collections,shell=True,capture_output=True,encoding="utf-8")
+    output = ret.stderr.split()
 
-    return out
+    return output
 
 
 class Module:

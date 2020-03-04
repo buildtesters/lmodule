@@ -3,7 +3,7 @@ import pytest
 from lmod.module import Module, get_all_collections
 
 class TestModule:
-    @pytest.mark.skip("not working")
+
     def test_module(self):
         mod_names = ["lmod"]
         a = Module(mod_names)
@@ -16,7 +16,7 @@ class TestModule:
         c = Module(mod_names, debug=True)
         assert 0 == c.test_modules()
 
-    @pytest.mark.skip("not working")
+
     def test_collection(self):
         cmd = Module(["settarg"])
         # save as collection name "settarg"
@@ -31,9 +31,11 @@ class TestModule:
         assert 0 == cmd.test_collection("settarg")
         assert 0 == cmd.test_collection()
 
-    @pytest.mark.skip("not working")
+
     def test_collection_exists(self):
-        assert "settarg" in get_all_collections()
+        user_collections = get_all_collections()
+        print(user_collections)
+        assert "settarg" in user_collections
 
     @pytest.mark.xfail(
         reason="Collection Name must be string when saving", raises=TypeError
