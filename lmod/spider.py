@@ -2,10 +2,6 @@ import json
 import os
 import subprocess
 
-from buildtest.tools.defaults import BUILDTEST_SPIDER_FILE, BUILDTEST_CONFIG_FILE
-from buildtest.tools.config import load_configuration
-
-
 class Spider:
     """Class declaration of Spider class"""
 
@@ -15,26 +11,17 @@ class Spider:
         :param tree: User can specify a module tree to query from spider.
         :type tree: str
         """
+        # set spider tree to value passed in to class or value of MODULEPATH
+        self.tree = tree or os.getenv("MODULEPATH")
 
-        #  if user specifies a tree, then run spider command otherwise read from configuration file.
-        if tree:
-            self.tree = tree
-
-            # Lmod can be optionally installed for using modules
-            self.spider_content = []
-            if os.getenv("LMOD_DIR") and os.path.exists(os.getenv("LMOD_DIR", "")):
-                spider_cmd = (
-                    f"{os.getenv('LMOD_DIR')}/spider -o spider-json {self.tree}"
-                )
-                out = subprocess.check_output(spider_cmd, shell=True).decode("utf-8")
-                self.spider_content = json.loads(out)
-
-        else:
-            with open(BUILDTEST_SPIDER_FILE, "r") as fd:
-                self.spider_content = json.load(fd)
-
-            content = load_configuration(BUILDTEST_CONFIG_FILE)
-            self.tree = content.get("BUILDTEST_MODULEPATH", [])
+        # Lmod can be optionally installed for using modules
+        self.spider_content = []
+        if os.getenv("LMOD_DIR") and os.path.exists(os.getenv("LMOD_DIR", "")):
+            spider_cmd = (
+                f"{os.getenv('LMOD_DIR')}/spider -o spider-json {self.tree}"
+            )
+            out = subprocess.check_output(spider_cmd, shell=True).decode("utf-8")
+            self.spider_content = json.loads(out)
 
     def get_trees(self):
         """" Return module trees used in spider command
