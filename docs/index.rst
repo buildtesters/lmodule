@@ -18,6 +18,7 @@ The name **lmodule** was decided by taking **Lmod** + **module** = **lmodule**.
    :caption: Contents:
 
    installation.rst
+   using_lmodule.rst
 
 
 
