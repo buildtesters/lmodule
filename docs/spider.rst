@@ -17,12 +17,12 @@ To create a Spider object you can do the following
 Getting Unique Software
 ------------------------
 
-If you want to get a list of unique software names, you can use the ``get_unique_software()`` method.
+If you want to get a list of unique software names, you can use the ``get_names()`` method.
 
 .. code-block:: python
 
     >>> a = Spider()
-    >>> a.get_unique_software()
+    >>> a.get_names()
     ['Anaconda3', 'Autoconf', 'Automake', 'Autotools', 'Bison', 'CMake', 'CUDA', 'Clang', 'EasyBuild', 'FFTW', 'GCC', 'GCCcore', 'GMP', 'M4', 'OSU-Micro-Benchmarks', 'OpenBLAS', 'OpenMPI', 'PyCharm', 'Python', 'SQLite', 'ScaLAPACK', 'Tcl', 'XZ', 'binutils', 'bzip2', 'diffutils', 'flex', 'foss', 'gdbm', 'gettext', 'gompi', 'help2man', 'hwloc', 'libffi', 'libiconv', 'libpciaccess', 'libreadline', 'libsigsegv', 'libtool', 'libxml2', 'lmod', 'm4', 'ncurses', 'numactl', 'pkgconf', 'readline', 'settarg', 'tar', 'util-macros', 'xorg-macros', 'xz', 'zlib']
 
 
@@ -59,13 +59,13 @@ We can retrieve a list of full canonical module names by using ``get_modules()``
 
 Retrieve all Parent Modules
 ----------------------------
-We can retrieve parent modules (modules that set MODULEPATH) to other trees by using method ``get_all_parents``. This
+We can retrieve parent modules (modules that set MODULEPATH) to other trees by using method ``get_parents``. This
 is useful for finding modules in Hierarchical Module Naming Scheme.
 
 .. code-block:: python
 
     >>> e = Spider()
-    >>> e.get_all_parents()
+    >>> e.get_parents()
     ['GCCcore/8.1.0', 'GCCcore/9.2.0']
 
 In this case we know that loading ``GCCcore/8.1.0`` will set MODULEPATH to another module tree. Notice in command below

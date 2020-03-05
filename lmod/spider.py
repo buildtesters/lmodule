@@ -31,7 +31,7 @@ class Spider:
         """
         return self.tree
 
-    def get_unique_software(self, name=[]):
+    def get_names(self, name=[]):
         """Return all keys from spider. This is the unique software names.
 
         :return: return sorted list of all spider keys.
@@ -52,14 +52,14 @@ class Spider:
 
         module_names = []
 
-        for module in self.get_unique_software(name):
+        for module in self.get_names(name):
             for mpath in self.spider_content[module].keys():
 
                 module_names.append(self.spider_content[module][mpath]["fullName"])
 
         return sorted(module_names)
 
-    def get_all_parents(self):
+    def get_parents(self):
         """Return all parent modules from all spider trees. This will search all ``parentAA`` keys in spider
          content. The parent modules are used for setting MODULEPATH to other trees.
 
@@ -70,7 +70,7 @@ class Spider:
         # we only care about unique modules. parentAA is bound to have duplicate modules.
         parent_set = set()
 
-        for module in self.get_unique_software():
+        for module in self.get_names():
             for mpath in self.spider_content[module].keys():
                 if "parentAA" in self.spider_content[module][mpath].keys():
                     for parent_comb in self.spider_content[module][mpath]["parentAA"]:
@@ -87,7 +87,7 @@ class Spider:
         """
 
         # return empty list of key is not found
-        if key not in self.get_unique_software():
+        if key not in self.get_names():
             return []
 
         all_versions = []

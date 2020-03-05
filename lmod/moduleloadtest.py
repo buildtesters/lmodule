@@ -8,7 +8,7 @@ class ModuleLoadTest:
     """
 
     def __init__(self, tree=None, purge=True, force=False, debug=False, count=999999999, name=[], include=[], exclude=[]):
-        """This is the initializer method
+        """This is the initializer method that automates testing of modules
 
         :param tree: specify one or more module trees to test. The module tree must be root directory where modulefiles
         are found. Use a colon ``:`` to define more than one module tree.
@@ -35,6 +35,7 @@ class ModuleLoadTest:
         :return: Result of module load test
         :rtype: None
         """
+
         # setting module tree to argument passed in or default to MODULEPATH
         self.tree = tree or os.getenv("MODULEPATH")
         self.debug = debug

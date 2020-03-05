@@ -1,6 +1,6 @@
-from lmod.module import get_all_collections, Module
+from lmod.module import get_user_collections, Module
 
-collections = get_all_collections()
+collections = get_user_collections()
 
 for i in collections:
     a = Module()

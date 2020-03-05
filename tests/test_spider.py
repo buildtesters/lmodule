@@ -14,20 +14,20 @@ class TestSpider:
         b = Spider(tree)
         assert b.get_trees() == tree 
 
-    def test_get_unique_software(self):
+    def test_get_names(self):
         """Retrieve unique software and modules from Spider class."""
 
         a = Spider()
         # the return type is expected to be a list
-        assert isinstance(a.get_unique_software(), list)
+        assert isinstance(a.get_names(), list)
 
         # The Travis build should have lmod module that should be available
-        assert "lmod" in a.get_unique_software()
+        assert "lmod" in a.get_names()
 
         # this will return the full canonical module name which should be a list.
         assert isinstance(a.get_modules(), list)
 
-        parent_modules = a.get_all_parents()
+        parent_modules = a.get_parents()
         assert isinstance(parent_modules, list)
         
 

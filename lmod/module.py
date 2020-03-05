@@ -1,7 +1,7 @@
 import subprocess
 
 
-def get_all_collections():
+def get_user_collections():
     """Get all Lmod user collections that is retrieved by running ``module -t savelist``.
 
      :return: Return all module collections
@@ -9,8 +9,8 @@ def get_all_collections():
      """
 
     collections = "module -t savelist"
-    ret = subprocess.run(collections,shell=True,capture_output=True,encoding="utf-8")
-    output = ret.stderr.split()
+    ret = subprocess.run(collections,shell=True,encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    output = ret.stdout.split()
 
     return output
 
@@ -81,7 +81,7 @@ class Module:
         """
         cmd_executed = self.get_command()
 
-        ret = subprocess.run(cmd_executed,shell=True, capture_output=True, encoding="utf-8")
+        ret = subprocess.run(cmd_executed,shell=True, encoding="utf-8", stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 
         # print executed command for debugging
         if self.debug:
@@ -104,7 +104,7 @@ class Module:
 
         module_save_cmd = f"{self.get_command()} && module save {collection}"
 
-        ret = subprocess.run(module_save_cmd, shell=True, capture_output=True,encoding="utf-8")
+        ret = subprocess.run(module_save_cmd, shell=True, encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
         # print executed command for debugging
         if self.debug:
@@ -113,7 +113,7 @@ class Module:
 
 
         print(f"Saving modules {self.modules} to module collection name: {collection}")
-        print(ret.stderr)
+        print(ret.stdout)
 
     def describe(self, collection="default"):
         """Show content of a module collection.
@@ -128,14 +128,14 @@ class Module:
             raise TypeError(f"Type Error: {collection} is not of type string")
 
         module_describe_cmd = f"module describe {collection}"
-        ret = subprocess.run(module_describe_cmd, shell=True, capture_output=True, encoding="utf-8")
+        ret = subprocess.run(module_describe_cmd, shell=True, encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
         # print executed command for debugging
         if self.debug:
             print(f"[DEBUG] Executing module command: {module_describe_cmd}")
             print(f"[DEBUG] Return Code: {ret.returncode}")
 
-        print(ret.stderr)
+        print(ret.stdout)
 
     def get_collection(self, collection="default"):
         """Return the command to restore a collection.
@@ -165,7 +165,7 @@ class Module:
             raise TypeError(f"Type Error: {collection} is not of type string")
 
         module_restore_cmd = f"module restore {collection}"
-        ret = subprocess.run(module_restore_cmd, shell=True, capture_output=True, encoding="utf-8")
+        ret = subprocess.run(module_restore_cmd, shell=True, encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
         # print executed command for debugging
         if self.debug:

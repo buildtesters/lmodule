@@ -1,6 +1,6 @@
 import pytest
 
-from lmod.module import Module, get_all_collections
+from lmod.module import Module, get_user_collections
 
 class TestModule:
 
@@ -33,7 +33,7 @@ class TestModule:
 
 
     def test_collection_exists(self):
-        user_collections = get_all_collections()
+        user_collections = get_user_collections()
         print(user_collections)
         assert "settarg" in user_collections
 
