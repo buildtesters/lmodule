@@ -2,12 +2,23 @@ import os
 from lmod.module import Module
 from lmod.spider import Spider
 
+
 class ModuleLoadTest:
     """This is the class declaration of ModuleLoadTest. This class will automate module load
     test for all modules in one or more module tree (Software Stack).
     """
 
-    def __init__(self, tree=None, purge=True, force=False, debug=False, count=999999999, name=[], include=[], exclude=[]):
+    def __init__(
+        self,
+        tree=None,
+        purge=True,
+        force=False,
+        debug=False,
+        count=999999999,
+        name=[],
+        include=[],
+        exclude=[],
+    ):
         """This is the initializer method that automates testing of modules
 
         :param tree: specify one or more module trees to test. The module tree must be root directory where modulefiles
@@ -60,16 +71,18 @@ class ModuleLoadTest:
         modules = filter_modules or modules
 
         modulecount = 0
-        print (f"Testing the Following Module Trees: {self.tree}")
-        print ("{:_<80}".format(""))
+        print(f"Testing the Following Module Trees: {self.tree}")
+        print("{:_<80}".format(""))
         for module_name in modules:
-            module_cmd = Module(module_name, purge=self.purge, force=self.force, debug=self.debug)
+            module_cmd = Module(
+                module_name, purge=self.purge, force=self.force, debug=self.debug
+            )
             ret = module_cmd.test_modules()
 
             if ret == 0:
-                print (f"PASSED -  Module Name: {module_name} ")
+                print(f"PASSED -  Module Name: {module_name} ")
             else:
-                print (f"FAILED -  Module Name: {module_name} ")
+                print(f"FAILED -  Module Name: {module_name} ")
 
             modulecount += 1
 

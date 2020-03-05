@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 
+
 class Spider:
     """Class declaration of Spider class"""
 
@@ -17,9 +18,7 @@ class Spider:
         # Lmod can be optionally installed for using modules
         self.spider_content = []
         if os.getenv("LMOD_DIR") and os.path.exists(os.getenv("LMOD_DIR", "")):
-            spider_cmd = (
-                f"{os.getenv('LMOD_DIR')}/spider -o spider-json {self.tree}"
-            )
+            spider_cmd = f"{os.getenv('LMOD_DIR')}/spider -o spider-json {self.tree}"
             out = subprocess.check_output(spider_cmd, shell=True).decode("utf-8")
             self.spider_content = json.loads(out)
 
