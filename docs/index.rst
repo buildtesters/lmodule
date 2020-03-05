@@ -19,6 +19,8 @@ The name **lmodule** was decided by taking **Lmod** + **module** = **lmodule**.
 
    installation.rst
    using_lmodule.rst
+   spider.rst
+   moduleloadtest.rst
 
 
 

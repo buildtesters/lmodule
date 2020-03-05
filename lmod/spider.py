@@ -31,16 +31,19 @@ class Spider:
         """
         return self.tree
 
-    def get_unique_software(self):
+    def get_unique_software(self, name=[]):
         """Return all keys from spider. This is the unique software names.
 
         :return: return sorted list of all spider keys.
         :rtype: list
         """
+        if name:
+            name_list = set(name).intersection(self.spider_content.keys())
+            return sorted(name_list)
+        else:
+            return sorted(list(self.spider_content.keys()))
 
-        return sorted(list(self.spider_content.keys()))
-
-    def get_modules(self):
+    def get_modules(self, name=[]):
         """Retrieve all module names from all module tree.
 
         :return: returns  a sorted list of all full canonical module name from all spider records.
@@ -49,7 +52,7 @@ class Spider:
 
         module_names = []
 
-        for module in self.get_unique_software():
+        for module in self.get_unique_software(name):
             for mpath in self.spider_content[module].keys():
 
                 module_names.append(self.spider_content[module][mpath]["fullName"])
