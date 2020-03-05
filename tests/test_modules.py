@@ -8,6 +8,7 @@ class TestModule:
         mod_names = ["lmod"]
         a = Module(mod_names,debug=True)
         print(a.get_command())
+        print(a.test_modules())
         assert 0 == a.test_modules()
 
         b = Module(mod_names, force=True)
