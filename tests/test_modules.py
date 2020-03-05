@@ -6,7 +6,7 @@ class TestModule:
 
     def test_module(self):
         mod_names = ["lmod"]
-        a = Module(mod_names)
+        a = Module(mod_names,debug=True)
         print(a.get_command())
         assert 0 == a.test_modules()
 
