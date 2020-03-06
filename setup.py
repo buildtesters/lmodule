@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 from lmod import LMODULE_VERSION
+
 setup(
     name="lmodule",
     version=LMODULE_VERSION,
@@ -20,6 +21,5 @@ setup(
     ],
     packages=find_packages(),
     include_package_data=True,
-
     entry_points={"console_scripts": ["lmodule=lmod.main:main"]},
 )

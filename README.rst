@@ -15,5 +15,12 @@
 lmodule (Lmod Module)
 ---------------------
 
-lmodule is a Lmod module API in Python 3.
+lmodule is a Python API for `Lmod <https://lmod.readthedocs.io/>`_ module system.
+
+LICENSE
+---------
+
+lmodule is released under the MIT license. See the `LICENSE <https://github.com/HPC-buildtest/lmodule/blob/master/LICENSE>`_
+file for more details.
+
 

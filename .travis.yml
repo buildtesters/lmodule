@@ -14,6 +14,8 @@ branches:
 env:
   matrix:
     - LMOD_VERSION=7.8.2
+    - LMOD_VERSION=8.2.10
+    - LMOD_VERSION=8.3.5
 addons:
   apt:
     packages:
@@ -36,10 +38,13 @@ before_script:
   - module --version
 
 script:
+  - source /opt/apps/lmod/lmod/init/profile
   - module use $LMOD_PKG/modulefiles/Core
   - echo $MODULEPATH
   - cd $TRAVIS_BUILD_DIR
   - echo $MODULEPATH
+  - echo $BASH_ENV
+  - env | grep LMOD
   - module av
   - coverage run -m pytest -vra tests/
   - coverage report -m

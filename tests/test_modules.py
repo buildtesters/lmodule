@@ -1,13 +1,17 @@
 import pytest
-
+import subprocess
 from lmod.module import Module, get_user_collections
 
-class TestModule:
 
+class TestModule:
     def test_module(self):
+        ret = subprocess.run("module --version",shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        print(ret.stdout)
+
         mod_names = ["lmod"]
-        a = Module(mod_names)
+        a = Module(mod_names, debug=True)
         print(a.get_command())
+        print(a.test_modules())
         assert 0 == a.test_modules()
 
         b = Module(mod_names, force=True)
@@ -15,7 +19,6 @@ class TestModule:
 
         c = Module(mod_names, debug=True)
         assert 0 == c.test_modules()
-
 
     def test_collection(self):
         cmd = Module(["settarg"])
@@ -30,7 +33,6 @@ class TestModule:
 
         assert 0 == cmd.test_collection("settarg")
         assert 0 == cmd.test_collection()
-
 
     def test_collection_exists(self):
         user_collections = get_user_collections()
