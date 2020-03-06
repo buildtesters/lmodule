@@ -1,10 +1,13 @@
 import pytest
-
+import subprocess
 from lmod.module import Module, get_user_collections
 
 
 class TestModule:
     def test_module(self):
+        ret = subprocess.run("module --version",shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        print(ret.stdout)
+
         mod_names = ["lmod"]
         a = Module(mod_names, debug=True)
         print(a.get_command())
