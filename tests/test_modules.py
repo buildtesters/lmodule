@@ -20,6 +20,26 @@ class TestModule:
         c = Module(mod_names, debug=True)
         assert 0 == c.test_modules()
 
+        d = Module(mod_names, purge=True)
+        d.get_command()
+
+        e = Module("lmod settarg", debug=True)
+        e.get_command()
+
+    def test_is_avail(self):
+        a = Module()
+        assert 0 == a.is_avail("lmod")
+
+    def test_version(self):
+        a = Module()
+        a.version()
+
+    def test_avail(self):
+        a = Module()
+        a.avail()
+        a.avail("lmod")
+
+
     def test_collection(self):
         cmd = Module(["settarg"])
         # save as collection name "settarg"
@@ -60,7 +80,25 @@ class TestModule:
         assert "module restore default" == a.get_collection()
 
     @pytest.mark.xfail(
-        reason="Type error when a non-string argument to ModuleCollection class",
+        reason="Type error when passing non-string argument to get_collection method",
+        raises=TypeError,
+    )
+    def test_get_collection_type_mismatch(self):
+
+        a = Module()
+        a.get_collection(1)
+
+    @pytest.mark.xfail(
+        reason="Type error when passing non-string argument to test_collection method",
+        raises=TypeError,
+    )
+    def test_test_collection_type_mismatch(self):
+
+        a = Module()
+        a.test_collection(1)
+
+    @pytest.mark.xfail(
+        reason="Type error when a non-string argument to Module class",
         raises=TypeError,
     )
     def test_type_error(self):

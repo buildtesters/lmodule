@@ -194,5 +194,44 @@ The Module class will throw a ``TypeError`` if it detects modules are not of typ
     TypeError: Expecting of type 'list' or 'string' for argument modules. Got of type <class 'int'>
 
 
+Is Module Available?
+-----------------------
 
+The ``module is-avail`` command can check if a module file is available in your system. The command will return an
+exit code either ``0`` or ``1``. This could be useful in finding module in system before loading them in your script.
+To demonstrate, we will use the ``is_avail()``method to check for module files.
+
+.. code-block:: python
+
+    >>> a.is_avail("GCC")
+    0
+
+    >>> a.is_avail("cuda")
+    1
+
+Similarly ``module avail`` command is mapped to the method ``avail()``. To check if ``lmod`` is available (i.e ``module avail lmod``)
+you can do the following
+
+.. code-block:: python
+
+    >>> a.avail("lmod")
+    ['/usr/share/lmod/lmod/modulefiles/Core:', 'lmod']
+
+If you want to get a listing of all modules (i.e ``module avail``), then don't pass any argument to ``avail()`` method.
+
+.. code-block:: python
+
+    >>> a.avail()
+    module -t avail
+    ['/usr/share/lmod/lmod/modulefiles/Core:', 'lmod', 'settarg']
+
+Get Lmod Version
+------------------
+
+You can get the Lmod version by using the ``version()`` method.
+
+.. code-block:: python
+
+    >>> a.version()
+    '7.8.16'
 

@@ -1,5 +1,5 @@
+import os
 import subprocess
-
 
 def get_user_collections():
     """Get all Lmod user collections that is retrieved by running ``module -t savelist``.
@@ -69,6 +69,60 @@ class Module:
             # purge modules before loading modules.
             else:
                 self.module_load_cmd = ["module purge &&"] + self.module_load_cmd
+
+    def avail(self,name=None):
+        """This method implements the ``module avail`` command.
+
+        :param name: argument passed to ``module av``. This is used for showing what modules are available
+        :type name: str
+
+        :return: Return output of ``module avail`` as a list
+        :rtype: list
+        """
+
+        cmd = "module -t avail"
+        # if argument specified
+        if name:
+            cmd = f"module -t avail {name}"
+        print(cmd)
+        ret = subprocess.run(
+            cmd,
+            shell=True,
+            encoding="utf-8",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+        return ret.stdout.split()
+
+    def version(self):
+        """Get Lmod version by getting value from environment ``LMOD_VERSION``
+
+        :return: Return the Lmod version
+        :rtype: str
+        """
+        return os.getenv("LMOD_VERSION") or None
+
+    def is_avail(self, name):
+        """This method implements the ``module is-avail`` command.
+
+        :param name: argument passed to ``module is-avail``. This is used for checking if module is available
+        :type name: str
+
+        :return: Return output of ``module is-avail``. This checks if module is available and return code is a 0 or 1
+        :rtype: int
+        """
+        cmd = f"module is-avail {name}"
+
+        ret = subprocess.run(
+            cmd,
+            shell=True,
+            encoding="utf-8",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+        return ret.returncode
 
     def get_command(self):
         """ Get the actual module load command that can be used to load the given modules.
