@@ -32,7 +32,7 @@ with spider as follows.
 .. code-block:: python
 
     >>> b = Spider("/usr/share/lmod/lmod/modulefiles/Core")
-    >>> b.get_unique_software()
+    >>> b.get_names()
     ['lmod', 'settarg']
 
 Get Module Trees

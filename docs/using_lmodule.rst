@@ -199,10 +199,11 @@ Is Module Available?
 
 The ``module is-avail`` command can check if a module file is available in your system. The command will return an
 exit code either ``0`` or ``1``. This could be useful in finding module in system before loading them in your script.
-To demonstrate, we will use the ``is_avail()``method to check for module files.
+To demonstrate, we will use the ``is_avail()`` method to check for module files.
 
 .. code-block:: python
 
+    >>> a = Module()
     >>> a.is_avail("GCC")
     0
 
@@ -214,6 +215,7 @@ you can do the following
 
 .. code-block:: python
 
+    >>> a = Module()
     >>> a.avail("lmod")
     ['/usr/share/lmod/lmod/modulefiles/Core:', 'lmod']
 
@@ -221,6 +223,7 @@ If you want to get a listing of all modules (i.e ``module avail``), then don't p
 
 .. code-block:: python
 
+    >>> a = Module()
     >>> a.avail()
     module -t avail
     ['/usr/share/lmod/lmod/modulefiles/Core:', 'lmod', 'settarg']
@@ -232,6 +235,7 @@ You can get the Lmod version by using the ``version()`` method.
 
 .. code-block:: python
 
+    >>> a = Module()
     >>> a.version()
     '7.8.16'
 

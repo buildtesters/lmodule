@@ -14,8 +14,7 @@ branches:
 env:
   matrix:
     - LMOD_VERSION=7.8.2
-    - LMOD_VERSION=8.2.10
-    - LMOD_VERSION=8.3.5
+
 addons:
   apt:
     packages:

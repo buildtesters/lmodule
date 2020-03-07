@@ -16,7 +16,25 @@
 lmodule (Lmod Module)
 ---------------------
 
-lmodule is a Python API for `Lmod <https://lmod.readthedocs.io/>`_ module system.
+lmodule is a Python API for `Lmod <https://lmod.readthedocs.io/>`_ module system. The API can be used
+end-users and system-administrators. End-users can utilize the API for interacting with module system to run
+their application. System Administrators can utilize the API for testing their Software Stack and retrieve
+output from the Lmod spider command.
+
+Author
+-------
+
+lmodule was created by `Shahzeb Siddiqui <http://github.com/shahzebsiddiqui/>`_.
+
+Contributing Back
+------------------
+
+We encourage community feedback and participation to help improve the lmodule API. To get started you can do the following:
+
+- Join the slack community
+
+- Test the API and provide feedback in the form of `Issue <https://github.com/HPC-buildtest/lmodule/issues>`_ or Pull Request.
+
 
 Slack
 ------
