@@ -1,5 +1,5 @@
 #!/bin/bash
-source /opt/apps/lmod/7.8.2/init/profile
+source /opt/apps/lmod/lmod/init/profile
 module use $LMOD_PKG/modulefiles/Core
 echo $MODULEPATH
 cd $TRAVIS_BUILD_DIR
