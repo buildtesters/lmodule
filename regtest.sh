@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash 
 set -v
 source /opt/apps/lmod/lmod/init/profile
 module use $LMOD_PKG/modulefiles/Core

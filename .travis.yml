@@ -37,7 +37,7 @@ before_script:
   - module --version
 
 script:
-  - sh $TRAVIS_BUILD_DIR/regtest.sh
+  -  $TRAVIS_BUILD_DIR/regtest.sh
 
 after_success:
   - codecov
