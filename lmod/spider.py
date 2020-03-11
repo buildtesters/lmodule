@@ -53,6 +53,10 @@ class Spider:
 
         for module in self.get_names(name):
             for mpath in self.spider_content[module].keys():
+                # skip modules that start with .version and .modulerc since they are not modules.
+                module_version = os.path.basename(self.spider_content[module][mpath]["fullName"])
+                if module_version.startswith(".version") or module_version.startswith(".modulerc"):
+                    continue
 
                 module_names.append(self.spider_content[module][mpath]["fullName"])
 
