@@ -48,14 +48,27 @@ You can get all module trees used by spider command using the method ``get_trees
 
 Retrieve all Module Names
 --------------------------
-We can retrieve a list of full canonical module names by using ``get_modules()`` method.
+
+We can retrieve a list of full canonical module names by using ``get_modules()`` method. The output is returned as a
+dictionary with key representing the modulefile and value is the full canonical module name.
 
 .. code-block:: python
 
-    >>> c = Spider("/mxg-hpc/users/ssi29/spack/modules/linux-rhel7-x86_64/Core")
-    >>> c.get_modules()
-    ['bzip2/1.0.8-etzfbao', 'diffutils/3.7-jthvt3v', 'gdbm/1.18.1-r4vohzu', 'gettext/0.20.1-c4ovdd2', 'libiconv/1.16-xcmzb6a', 'libpciaccess/0.13.5-cavw42z', 'libsigsegv/2.12-oywfhvk', 'libtool/2.4.6-swiq7rt', 'libxml2/2.9.9-azmlgc5', 'm4/1.4.18-dipchcn', 'ncurses/6.1-3jjw2re', 'pkgconf/1.6.3-oqak6dh', 'readline/8.0-bp7xnfp', 'tar/1.32-gem5z6s', 'util-macros/1.19.1-s4xjvop', 'xz/5.2.4-lvajsnj', 'zlib/1.2.11-zolwez4']
+    >>> >>> b = Spider("/usr/share/lmod/lmod/modulefiles/Core")
+    >>> b.get_modules()
+    {'/usr/share/lmod/lmod/modulefiles/Core/lmod.lua': 'lmod', '/usr/share/lmod/lmod/modulefiles/Core/settarg.lua': 'settarg'}
 
+
+You may filter result by module name (i.e result from ``get_names()``) when using ``get_modules()``. For instance
+if you want to see all ``CUDA`` and ``lmod`` modules you can do the following
+
+.. code-block:: python
+
+    >>> c = Spider()
+    >>> c.get_modules(["lmod","CUDA"])
+    {'/mxg-hpc/users/ssi29/easybuild/modules/all/CUDA/10.0.130.lua': 'CUDA/10.0.130', '/mxg-hpc/users/ssi29/easybuild/modules/all/CUDA/9.2.148.1.lua': 'CUDA/9.2.148.1', '/usr/share/lmod/lmod/modulefiles/Core/lmod.lua': 'lmod'}
+
+.. Note:: You must pass values as a list when filtering by module names
 
 Retrieve all Parent Modules
 ----------------------------

@@ -46,10 +46,10 @@ class Spider:
         """Retrieve all module names from all module tree.
 
         :return: returns  a sorted list of all full canonical module name from all spider records.
-        :rtype: list
+        :rtype: dict
         """
 
-        module_names = []
+        module_names = {}
 
         for module in self.get_names(name):
             for mpath in self.spider_content[module].keys():
@@ -58,9 +58,9 @@ class Spider:
                 if module_version.startswith(".version") or module_version.startswith(".modulerc"):
                     continue
 
-                module_names.append(self.spider_content[module][mpath]["fullName"])
+                module_names[mpath]=self.spider_content[module][mpath]["fullName"]
 
-        return sorted(module_names)
+        return module_names
 
     def get_parents(self):
         """Return all parent modules from all spider trees. This will search all ``parentAA`` keys in spider
