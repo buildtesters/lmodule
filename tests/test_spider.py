@@ -15,7 +15,7 @@ class TestSpider:
         assert b.get_trees() == tree
 
     def test_get_names(self):
-        """Retrieve unique software and modules from Spider class."""
+        """Retrieve unique software from Spider class."""
 
         a = Spider()
         # the return type is expected to be a list
@@ -24,8 +24,15 @@ class TestSpider:
         # The Travis build should have lmod module that should be available
         assert "lmod" in a.get_names()
 
+    def test_get_modules(self):
+        """This test will retrieve full canonical module names from ``get_modules`` method which is expected to return a
+        dictionary"""
+        a = Spider()
         # this will return the full canonical module name which should be a list.
-        assert isinstance(a.get_modules(), list)
+        assert isinstance(a.get_modules(), dict)
 
+    def test_get_parents(self):
+        """This will retrieve all parent modules. The method ``get_parents`` is expected to return of type list"""
+        a = Spider()
         parent_modules = a.get_parents()
         assert isinstance(parent_modules, list)
