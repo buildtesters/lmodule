@@ -18,6 +18,7 @@ class ModuleLoadTest:
         name=[],
         include=[],
         exclude=[],
+        login=False,
     ):
         """This is the initializer method that automates testing of modules
 
@@ -30,7 +31,10 @@ class ModuleLoadTest:
 
         :param force: control whether to run ``module --force purge`` before loading each module
         :type purge: bool
-
+        
+        :param login: control whether to run test in login shell. Defaults to sub-shell when ``login=False`` 
+        :type purge: bool
+        
         :param count: control how many tests to run before exiting
         :type purge: int
 
@@ -52,6 +56,7 @@ class ModuleLoadTest:
         self.debug = debug
         self.purge = purge
         self.force = force
+        self.login = login
         self.count = count
         self.name = name
         self.include = include
@@ -75,9 +80,9 @@ class ModuleLoadTest:
         print("{:_<80}".format(""))
         for module_name in modules:
             module_cmd = Module(
-                module_name, purge=self.purge, force=self.force, debug=self.debug
+                module_name, purge=self.purge, force=self.force, debug=self.debug, 
             )
-            ret = module_cmd.test_modules()
+            ret = module_cmd.test_modules(self.login)
 
             # extract modulefile based on module name. This is basically getting the key from dictionary (module_dict)
             # This is only used for printing purposes since it helps to know which module is tested. Simply putting

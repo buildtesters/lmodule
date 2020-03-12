@@ -133,13 +133,17 @@ class Module:
 
         return " ".join(self.module_load_cmd)
 
-    def test_modules(self):
+    def test_modules(self, login=False):
         """ Test all specified modules by loading them using ``module load``.
 
         :return: return code of ``module load`` command
         :rtype: int
         """
         cmd_executed = self.get_command()
+
+        # run test in login shell
+        if login:
+            cmd_executed = "bash -l -c \"" + cmd_executed + "\""
 
         ret = subprocess.run(
             cmd_executed,

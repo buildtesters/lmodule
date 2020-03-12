@@ -13,7 +13,6 @@ To test all modules set by MODULEPATH you can run the invoke ``ModuleLoadTest()`
 .. code-block:: python
 
     >>> a = ModuleLoadTest()
-    >>> a = ModuleLoadTest()
     Testing the Following Module Trees: /mxg-hpc/users/ssi29/easybuild-HMNS/modules/all/Core:/mxg-hpc/users/ssi29/spack/modules/linux-rhel7-x86_64/Core:/mxg-hpc/users/ssi29/easybuild/modules/all:/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
     ________________________________________________________________________________
     PASSED -  Module Name: Anaconda3/5.3.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Anaconda3/5.3.0.lua )
@@ -161,4 +160,31 @@ list will be ignored. Since these are mutually exclusive options use either argu
     ________________________________________________________________________________
     PASSED -  Module Name: Bison/3.0.4 ( modulefile=/mxg-hpc/users/ssi29/easybuild-HMNS/modules/all/Core/Bison/3.0.4.lua )
     PASSED -  Module Name: CUDA/10.0.130 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/CUDA/10.0.130.lua )
+
+Test Modules in Login Shell
+----------------------------
+
+By default, modules will be tested in sub-shell, if you want to test modules in login shell then pass ``login=True`` to
+the ModuleLoadTest class. The test will be conducted in bash using the following format::
+
+    bash -l -c "<command>"
+
+.. Note:: This will take significantly longer as each test will run in a login shell
+
+.. Note:: Depending on your startup configuration (i.e MODULEPATH) test behavior can be unpredictable.
+
+In example below we will test the module tree ``"/usr/share/lmod/lmod/modulefiles/Core"``  in debug mode to see
+actual command using login shell.
+
+.. code-block:: python
+
+    >>> a = ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core", debug=True,login=True)
+    Testing the Following Module Trees: /usr/share/lmod/lmod/modulefiles/Core
+    ________________________________________________________________________________
+    [DEBUG] Executing module command: bash -l -c "module purge && module load lmod  "
+    [DEBUG] Return Code: 0
+    PASSED -  Module Name: lmod ( modulefile=/usr/share/lmod/lmod/modulefiles/Core/lmod.lua )
+    [DEBUG] Executing module command: bash -l -c "module purge && module load settarg  "
+    [DEBUG] Return Code: 0
+    PASSED -  Module Name: settarg ( modulefile=/usr/share/lmod/lmod/modulefiles/Core/settarg.lua )
 

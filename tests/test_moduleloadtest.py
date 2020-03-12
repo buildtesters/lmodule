@@ -28,3 +28,6 @@ class TestModuleLoadTest:
 
     def test_lmod_tree(self):
         ModuleLoadTest(os.path.join(os.getenv("LMOD_PKG"),"modulefiles/Core"),debug=True)
+
+    def test_login_test(self):
+        ModuleLoadTest(os.path.join(os.getenv("LMOD_PKG"),"modulefiles/Core"), debug=True, login=True)
