@@ -37,7 +37,12 @@ before_script:
   - module --version
 
 script:
-  -  $TRAVIS_BUILD_DIR/regtest.sh
+  - source /opt/apps/lmod/lmod/init/profile
+  - echo $BASH_ENV
+  - module use $LMOD_PKG/modulefiles/Core
+  - echo $MODULEPATH
+  - echo $MODULEPATH
+  - sh $TRAVIS_BUILD_DIR/regtest.sh
 
 after_success:
   - codecov
