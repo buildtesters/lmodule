@@ -42,7 +42,8 @@ script:
   - module use $LMOD_PKG/modulefiles/Core
   - echo $MODULEPATH
   - echo $MODULEPATH
-  - sh $TRAVIS_BUILD_DIR/regtest.sh
+  - cd $TRAVIS_BUILD_DIR
+  - sh regtest.sh
 
 after_success:
   - codecov
