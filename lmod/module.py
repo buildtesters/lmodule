@@ -2,10 +2,11 @@ import os
 import subprocess
 
 def get_user_collections():
-    """Get all Lmod user collections that is retrieved by running ``module -t savelist``.
+    """Get all user collections that is retrieved by running ``module -t savelist``. The output
+       is of type ``list`` and each entry in list is the name of the user collection.
 
-     :return: Return all module collections
-     :rtype: list
+       :return: Return all user collections
+       :rtype: list
      """
 
     collections = "module -t savelist"
@@ -22,21 +23,41 @@ def get_user_collections():
 
 
 class Module:
-    """Class declaration for Module class"""
+    """This is the class declaration of Module class which emulates the ``module`` command
+       provided by Lmod
+
+       Public Methods:
+       ---------------
+       avail: implements ``module avail`` option
+       version: gets Lmod version by reading LMOD_VERSION
+       is_avail: implements ``module is-avail`` option
+       get_command: gets the ``module load`` command based on modules passed to the class
+       test_modules: test the ``module load`` command based on modules passed to the class
+       save: implements ``module save`` option
+       describe: implements ``module describe`` option
+       get_collection: gets the ``module restore`` command with the specified collection name
+       test_collection: test the ``module restore`` command with the specified collection name
+    """
 
     def __init__(self, modules=None, purge=True, force=False, debug=False):
-        """Initialize method for Module class.
+        """Initialize method for Module class. This class can accept module names that
+           can be used to load or test modules. You can tweak the behavior of how module
+           command is generated such as purging of force purge modules. The debug option
+           can be useful for troubleshooting.
 
-        :param modules: list of modules
-        :param purge: boolean to control whether to purge modules before loading
-        :param force: boolean to control whether to force purge modules before loading
-        :param debug: debug mode for troubleshooting
+           Parameters:
+           -----------
+           :param modules: list of modules
+           :param purge: boolean to control whether to purge modules before loading
+           :param force: boolean to control whether to force purge modules before loading
+           :param debug: debug mode for troubleshooting
 
-        :type modules: list
-        :type purge: bool
-        :type force: bool
-        :type debug: bool
+           :type modules: list, optional
+           :type purge: bool, optional
+           :type force: bool, optional
+           :type debug: bool, optional
         """
+
         self.debug = debug
         self.modules = modules
 
@@ -71,13 +92,17 @@ class Module:
                 self.module_load_cmd = ["module purge &&"] + self.module_load_cmd
 
     def avail(self,name=None):
-        """This method implements the ``module avail`` command.
+        """This method implements the ``module avail`` command. The output of module avail will return available
+           modules in the system. The output is returned as a list using the ``module -t avail`` which presents the
+           output in a single line per module.
 
-        :param name: argument passed to ``module av``. This is used for showing what modules are available
-        :type name: str
+           Parameters:
+           -----------
+           :param name: argument passed to ``module avail``. This is used for showing what modules are available
+           :type name: str, optional
 
-        :return: Return output of ``module avail`` as a list
-        :rtype: list
+           :return: Return output of ``module avail`` as a list
+           :rtype: list
         """
 
         cmd = "module -t avail"
@@ -96,22 +121,27 @@ class Module:
         return ret.stdout.split()
 
     def version(self):
-        """Get Lmod version by getting value from environment ``LMOD_VERSION``
+        """Get Lmod version by reading environment variable ``LMOD_VERSION`` and return as a string
 
-        :return: Return the Lmod version
-        :rtype: str
+           :return: Return the Lmod version as a string
+           :rtype: str
         """
+
         return os.getenv("LMOD_VERSION") or None
 
     def is_avail(self, name):
-        """This method implements the ``module is-avail`` command.
+        """This method implements the ``module is-avail`` command which is used for checking if a module is available
+           before loading it. The return value is a 0 or 1.
 
-        :param name: argument passed to ``module is-avail``. This is used for checking if module is available
-        :type name: str
+           Parameters:
+           ------------
+           :param name: argument passed to ``module is-avail``. This is used for checking if module is available
+           :type name: str, required
 
-        :return: Return output of ``module is-avail``. This checks if module is available and return code is a 0 or 1
-        :rtype: int
+           :return: Return output of ``module is-avail``. This checks if module is available and return code is a 0 or 1
+           :rtype: int
         """
+
         cmd = f"module is-avail {name}"
 
         ret = subprocess.run(
@@ -125,20 +155,28 @@ class Module:
         return ret.returncode
 
     def get_command(self):
-        """ Get the actual module load command that can be used to load the given modules.
+        """Get the actual module load command that can be used to load the given modules.
 
-        :return: return the actual module load command
-        :rtype: str
+           :return: return the actual module load command
+           :rtype: str
         """
 
         return " ".join(self.module_load_cmd)
 
     def test_modules(self, login=False):
-        """ Test all specified modules by loading them using ``module load``.
+        """Test all modules passed to Module class by loading them using ``module load``. The default behavior
+           is to run the command in a sub-shell but this can be changed to run in a new login shell if ``login=True`` is
+           specified. The return value is a return code (type ``int``) of the ``module load`` command.
 
-        :return: return code of ``module load`` command
-        :rtype: int
+           Parameters:
+           -----------
+           :param login: When ``login=True`` is set, it will run the test in a login shell, the default is to run in a sub-shell
+           :type login: bool, optional
+
+           :return: return code of ``module load`` command
+           :rtype: int
         """
+
         cmd_executed = self.get_command()
 
         # run test in login shell
@@ -161,10 +199,16 @@ class Module:
         return ret.returncode
 
     def save(self, collection="default"):
-        """Save active modules into a module collection.
+        """Save modules specified in Module class into a user collection. This implements the ``module save`` command
+           for active modules. In this case, we are saving modules that were passed to the Module class. If no argument
+           is specified, we will save to ``default`` collection, but user can specify a collection name, in that case
+           we are running ``module save <collection>``. The collection name must be of type ``str`` in order for
+           this to work, otherwise an exception of ``TypeError`` will be raised.
 
-        :param collection: collection name to save modules. If none specified, ``default`` is the collection.
-        :type collection: str
+           Paramters:
+           -----------
+           :param collection: collection name to save modules. If none specified, ``default`` is the collection.
+           :type collection: str, optional
         """
 
         # raise TypeError exception if collection is not a string type since that is required
@@ -191,10 +235,15 @@ class Module:
         print(ret.stdout)
 
     def describe(self, collection="default"):
-        """Show content of a module collection.
+        """Show content of a user collection and implements the command ``module describe``. By default, if no argument
+           is specified it will resort to showing contents of ``default`` collection. One can pass a collection name
+           which must be of type ``str`` that is the user collection name. Internally it will run ``module describe <collection>``.
+           If collection name is not of type ``str``, then an exception of ``TypeError`` will be raised.
 
-        :param collection: name of module collection
-        :type collection: str
+           Parameters:
+           -----------
+           :param collection: name of user collection to show.
+           :type collection: str, optional
         """
 
         # raise TypeError exception if collection is not a string type since that is required
@@ -219,14 +268,20 @@ class Module:
         print(ret.stdout)
 
     def get_collection(self, collection="default"):
-        """Return the command to restore a collection.
+        """Return the module command to restore a collection. If no argument is specified, it will resort to the ``default``
+           collection, otherwise one can specify a collection name of type ``str``. The output will be of type ``str``
+           such as ``module restore default``. If argument to class is not of type ``str`` then an exception of type
+           ``TypeError`` will be raised.
 
-        :param collection: collection name to restore
-        :type collection: str
+           Parameters:
+           -----------
+           :param collection: collection name to restore
+           :type collection: str, optional
 
-        :return: return the ``module restore`` command with the collection name
-        :rtype: str
+           :return: return the ``module restore`` command with the collection name
+           :rtype: str
         """
+
         # raise error if collection is not a string
         if not isinstance(collection, str):
             raise TypeError(f"Type Error: {collection} is not of type string")
@@ -234,13 +289,21 @@ class Module:
         return f"module restore {collection}"
 
     def test_collection(self, collection="default"):
-        """Test the module collection by running ``module restore <collection>``.
-        :param collection: collection name to test
-        :type collection: str
+        """Test the user collection by running ``module restore`` against a collection name. This is useful, to test a
+           user collection is working before using it in your scripts. If no argument is specified, it will test the
+           ``default`` collection. One can specify a user collection name which must of be of type ``str`` and it must
+           exist. The output will be a return code of the ``module restore`` command which would be of type ``int``.
+           If argument to method is not of type ``str`` an exception of ``TypeError`` will be raised.
 
-        :return: return code of ``module restore`` against the collection name
-        :rtype: int
+           Parameters:
+           -----------
+           :param collection: collection name to test
+           :type collection: str, optional
+
+           :return: return code of ``module restore`` against the collection name
+           :rtype: int
         """
+
         # raise error if collection is not a string
         if not isinstance(collection, str):
             raise TypeError(f"Type Error: {collection} is not of type string")

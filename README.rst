@@ -16,7 +16,7 @@
 lmodule (Lmod Module)
 ---------------------
 
-lmodule is a Python API for `Lmod <https://lmod.readthedocs.io/>`_ module system. The API can be used
+lmodule is a Python 3 API for `Lmod <https://lmod.readthedocs.io/>`_ module system. The API can be used
 end-users and system-administrators. End-users can utilize the API for interacting with module system to run
 their application. System Administrators can utilize the API for testing their Software Stack and retrieve
 output from the Lmod spider command.
