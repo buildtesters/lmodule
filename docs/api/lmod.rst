@@ -6,8 +6,6 @@ Submodules
 
 .. toctree::
 
-   lmod.main
-   lmod.menu
    lmod.module
    lmod.moduleloadtest
    lmod.spider

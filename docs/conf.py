@@ -10,10 +10,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('..'))
 
+from lmod import LMODULE_VERSION
 from sphinx.ext.apidoc import main as sphinx_apidoc
 
 # -- Project information -----------------------------------------------------
@@ -23,7 +24,7 @@ copyright = "2020, Shahzeb Siddiqui"
 author = "Shahzeb Siddiqui"
 
 # The full version, including alpha/beta/rc tags
-version = "0.1"
+version = LMODULE_VERSION
 release = "beta"
 
 

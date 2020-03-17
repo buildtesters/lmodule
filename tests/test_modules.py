@@ -103,3 +103,7 @@ class TestModule:
     )
     def test_type_error(self):
         a = Module(1)
+
+    def test_modules_in_login(self):
+        a = Module("lmod",debug=True)
+        a.test_modules(login=True)

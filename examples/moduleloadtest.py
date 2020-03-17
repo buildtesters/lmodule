@@ -19,4 +19,5 @@ i = ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core", exclude=["lmod"])
 j = ModuleLoadTest(
     "/usr/share/lmod/lmod/modulefiles/Core", include=["settarg"], exclude=["lmod"]
 )
-y = ModuleLoadTest("/mxg-hpc/users/ssi29/spack/modules/linux-rhel7-x86_64/Core")
+k = ModuleLoadTest("/mxg-hpc/users/ssi29/spack/modules/linux-rhel7-x86_64/Core")
+l = ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core", debug=True,login=True)

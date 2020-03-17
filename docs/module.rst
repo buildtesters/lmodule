@@ -1,4 +1,4 @@
-Using Lmodule API
+Module Class
 ===================
 
 The get started we will show how to use the ``Module`` class to interact with the Lmod module system. First
@@ -40,6 +40,46 @@ code.
 .. code-block:: python
 
     >>> b.test_modules()
+    0
+
+By default tests are run in a sub-shell if you are interested in running test in a login shell see :ref:`Login Shell Test`
+
+Enabling Debug
+---------------
+
+To enable debug you can pass ``debug=True`` to the ``Module`` class. This works with most methods.
+
+.. code-block:: python
+
+    >>> a = Module("GCCcore/8.3.0",debug=True)
+    >>> a.test_modules()
+    [DEBUG] Executing module command: module purge && module load GCCcore/8.3.0
+    [DEBUG] Return Code: 0
+    0
+
+Debug works on user collection methods as well
+
+.. _Login Shell Test:
+
+Testing Modules in Login Shell
+-------------------------------
+
+If you would like to test your module in a login shell you can pass ``login=True`` to ``test_modules`` method. The
+test will be conducted using bash
+
+The format of the test will be as follows::
+
+    bash -l -c "<command>"
+
+Shown below is GCCcore/8.3.0 tested using a login shell. You may get different results if MODULEPATH is different in your
+current shell as pose to when you login.
+
+.. code-block:: python
+
+    >>> a = Module("GCCcore/8.3.0",debug=True)
+    >>> a.test_modules(login=True)
+    [DEBUG] Executing module command: bash -l -c "module purge && module load GCCcore/8.3.0  "
+    [DEBUG] Return Code: 0
     0
 
 Saving Modules to User Collection
@@ -146,22 +186,6 @@ takes precedence over force.
     >>> c = Module("OpenMPI/3.0.0", purge=False, force=True)
     >>> c.get_command()
     'module load OpenMPI/3.0.0  '
-
-
-Enabling Debug
----------------
-
-To enable debug you can pass ``debug=True`` to the ``Module`` class. This works with most methods.
-
-.. code-block:: python
-
-    >>> a = Module("GCCcore/8.3.0",debug=True)
-    >>> a.test_modules()
-    [DEBUG] Executing module command: module purge && module load GCCcore/8.3.0
-    [DEBUG] Return Code: 0
-    0
-
-Debug works on user collection methods as well
 
 .. code-block:: python
 
