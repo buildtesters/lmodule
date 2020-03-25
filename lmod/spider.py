@@ -2,12 +2,13 @@ import json
 import os
 import subprocess
 
+
 class Spider:
     """This is the class declaration of Spider class which emulates the spider tool provided by Lmod. The spider command
        is typically used to build the spider cache in your site. We use the spider tool to fetch all module files.
 
        Public Methods:
-       ---------------
+
        get_trees: returns all module trees used with spider command
        get_names: returns all top-level keys from spider which is the software name
        get_modules: returns all full canonical module name.
@@ -23,7 +24,7 @@ class Spider:
 
 
            Parameters:
-           ------------
+
            :param tree: User can specify one or more module trees to query from spider. Trees must be separated by colon (``:``)
            :type tree: str, optional
         """
@@ -49,8 +50,8 @@ class Spider:
         """Returns a list of software names which are found by returning the top-level key from json structure.
            One can specify a list of module names to filter output.
 
-           Parameters
-           -----------
+           Parameters:
+
            :param name: a list of software name to filter output
            :type name: list, optional
 
@@ -72,7 +73,6 @@ class Spider:
            modules.
 
            Parameters:
-           ------------
 
            :param name: a list of software name to filter output
            :type name: type, required
@@ -86,11 +86,15 @@ class Spider:
         for module in self.get_names(name):
             for mpath in self.spider_content[module].keys():
                 # skip modules that start with .version and .modulerc since they are not modules.
-                module_version = os.path.basename(self.spider_content[module][mpath]["fullName"])
-                if module_version.startswith(".version") or module_version.startswith(".modulerc"):
+                module_version = os.path.basename(
+                    self.spider_content[module][mpath]["fullName"]
+                )
+                if module_version.startswith(".version") or module_version.startswith(
+                    ".modulerc"
+                ):
                     continue
 
-                module_names[mpath]=self.spider_content[module][mpath]["fullName"]
+                module_names[mpath] = self.spider_content[module][mpath]["fullName"]
 
         return module_names
 
@@ -120,7 +124,7 @@ class Spider:
            in spider output.
 
            Parameters:
-           -----------
+
            :param key: name of software
            :type key: str, required
 

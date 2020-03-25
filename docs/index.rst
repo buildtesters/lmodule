@@ -9,6 +9,7 @@ Welcome to lmodule documentation!
 `lmodule <https://github.com/HPC-buildtest/lmodule>`_ is a Python API for `Lmod <https://lmod.readthedocs.io/en/latest>`_
 module system. lmodule was originally part of `buildtest <https://github.com/HPC-buildtest/buildtest-framework>`_ and
 we decided that it could benefit the entire community for folks interested in using the API but not relying on buildtest.
+The documentation is built for version |version| on |today|
 
 What is lmodule?
 -----------------

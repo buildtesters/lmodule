@@ -1,6 +1,7 @@
 import os
 from lmod.moduleloadtest import ModuleLoadTest
 
+
 class TestModuleLoadTest:
     def test_disable_purge(self):
         ModuleLoadTest(purge=False)
@@ -15,10 +16,10 @@ class TestModuleLoadTest:
         ModuleLoadTest(exclude=["lmod"])
 
     def test_filter_include_exclude(self):
-        ModuleLoadTest(include=["lmod"],exclude=["lmod"])
+        ModuleLoadTest(include=["lmod"], exclude=["lmod"])
 
     def test_filter_name(self):
-        ModuleLoadTest(name=["lmod","settarg"])
+        ModuleLoadTest(name=["lmod", "settarg"])
 
     def test_by_count(self):
         ModuleLoadTest(count=1)
@@ -27,7 +28,13 @@ class TestModuleLoadTest:
         ModuleLoadTest(debug=True)
 
     def test_lmod_tree(self):
-        ModuleLoadTest(os.path.join(os.getenv("LMOD_PKG"),"modulefiles/Core"),debug=True)
+        ModuleLoadTest(
+            os.path.join(os.getenv("LMOD_PKG"), "modulefiles/Core"), debug=True
+        )
 
     def test_login_test(self):
-        ModuleLoadTest(os.path.join(os.getenv("LMOD_PKG"),"modulefiles/Core"), debug=True, login=True)
+        ModuleLoadTest(
+            os.path.join(os.getenv("LMOD_PKG"), "modulefiles/Core"),
+            debug=True,
+            login=True,
+        )

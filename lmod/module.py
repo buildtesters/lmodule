@@ -1,6 +1,7 @@
 import os
 import subprocess
 
+
 def get_user_collections():
     """Get all user collections that is retrieved by running ``module -t savelist``. The output
        is of type ``list`` and each entry in list is the name of the user collection.
@@ -27,7 +28,7 @@ class Module:
        provided by Lmod
 
        Public Methods:
-       ---------------
+
        avail: implements ``module avail`` option
        version: gets Lmod version by reading LMOD_VERSION
        is_avail: implements ``module is-avail`` option
@@ -46,15 +47,14 @@ class Module:
            can be useful for troubleshooting.
 
            Parameters:
-           -----------
-           :param modules: list of modules
-           :param purge: boolean to control whether to purge modules before loading
-           :param force: boolean to control whether to force purge modules before loading
-           :param debug: debug mode for troubleshooting
 
+           :param modules: list of modules
            :type modules: list, optional
+           :param purge: boolean to control whether to purge modules before loading
            :type purge: bool, optional
+           :param force: boolean to control whether to force purge modules before loading
            :type force: bool, optional
+           :param debug: debug mode for troubleshooting
            :type debug: bool, optional
         """
 
@@ -91,13 +91,13 @@ class Module:
             else:
                 self.module_load_cmd = ["module purge &&"] + self.module_load_cmd
 
-    def avail(self,name=None):
+    def avail(self, name=None):
         """This method implements the ``module avail`` command. The output of module avail will return available
            modules in the system. The output is returned as a list using the ``module -t avail`` which presents the
            output in a single line per module.
 
            Parameters:
-           -----------
+
            :param name: argument passed to ``module avail``. This is used for showing what modules are available
            :type name: str, optional
 
@@ -134,7 +134,7 @@ class Module:
            before loading it. The return value is a 0 or 1.
 
            Parameters:
-           ------------
+
            :param name: argument passed to ``module is-avail``. This is used for checking if module is available
            :type name: str, required
 
@@ -169,7 +169,7 @@ class Module:
            specified. The return value is a return code (type ``int``) of the ``module load`` command.
 
            Parameters:
-           -----------
+
            :param login: When ``login=True`` is set, it will run the test in a login shell, the default is to run in a sub-shell
            :type login: bool, optional
 
@@ -181,7 +181,7 @@ class Module:
 
         # run test in login shell
         if login:
-            cmd_executed = "bash -l -c \"" + cmd_executed + "\""
+            cmd_executed = 'bash -l -c "' + cmd_executed + '"'
 
         ret = subprocess.run(
             cmd_executed,
@@ -205,8 +205,8 @@ class Module:
            we are running ``module save <collection>``. The collection name must be of type ``str`` in order for
            this to work, otherwise an exception of ``TypeError`` will be raised.
 
-           Paramters:
-           -----------
+           Parameters:
+
            :param collection: collection name to save modules. If none specified, ``default`` is the collection.
            :type collection: str, optional
         """
@@ -241,7 +241,7 @@ class Module:
            If collection name is not of type ``str``, then an exception of ``TypeError`` will be raised.
 
            Parameters:
-           -----------
+
            :param collection: name of user collection to show.
            :type collection: str, optional
         """
@@ -274,7 +274,7 @@ class Module:
            ``TypeError`` will be raised.
 
            Parameters:
-           -----------
+
            :param collection: collection name to restore
            :type collection: str, optional
 
@@ -296,7 +296,7 @@ class Module:
            If argument to method is not of type ``str`` an exception of ``TypeError`` will be raised.
 
            Parameters:
-           -----------
+
            :param collection: collection name to test
            :type collection: str, optional
 

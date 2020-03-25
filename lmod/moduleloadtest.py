@@ -2,6 +2,7 @@ import os
 from lmod.module import Module
 from lmod.spider import Spider
 
+
 class ModuleLoadTest:
     """This is the class declaration of ModuleLoadTest. This class will automate module load
        test for all modules in one or more module tree (Software Stack) retrieved by Spider class. The output
@@ -68,7 +69,10 @@ class ModuleLoadTest:
         filter_modules = None
 
         spider_cmd = Spider(self.tree)
-        module_dict, modules = spider_cmd.get_modules(self.name), list(spider_cmd.get_modules(self.name).values())
+        module_dict, modules = (
+            spider_cmd.get_modules(self.name),
+            list(spider_cmd.get_modules(self.name).values()),
+        )
 
         if self.include:
             filter_modules = set(self.include).intersection(modules)
@@ -86,19 +90,25 @@ class ModuleLoadTest:
 
         for module_name in modules:
             module_cmd = Module(
-                module_name, purge=self.purge, force=self.force, debug=self.debug, 
+                module_name, purge=self.purge, force=self.force, debug=self.debug,
             )
             ret = module_cmd.test_modules(self.login)
 
             # extract modulefile based on module name. This is basically getting the key from dictionary (module_dict)
             # This is only used for printing purposes since it helps to know which module is tested. Simply putting
             # the full module canonical name is not enough.
-            modulefile = list(module_dict.keys())[list(module_dict.values()).index(module_name)]
+            modulefile = list(module_dict.keys())[
+                list(module_dict.values()).index(module_name)
+            ]
 
             if ret == 0:
-                print(f"PASSED -  Module Name: {module_name} ( modulefile={modulefile} )")
+                print(
+                    f"PASSED -  Module Name: {module_name} ( modulefile={modulefile} )"
+                )
             else:
-                print(f"FAILED -  Module Name: {module_name} ( modulefile={modulefile} )")
+                print(
+                    f"FAILED -  Module Name: {module_name} ( modulefile={modulefile} )"
+                )
 
             modulecount += 1
 

@@ -5,7 +5,12 @@ from lmod.module import Module, get_user_collections
 
 class TestModule:
     def test_module(self):
-        ret = subprocess.run("module --version",shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        ret = subprocess.run(
+            "module --version",
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
         print(ret.stdout)
 
         mod_names = ["lmod"]
@@ -38,7 +43,6 @@ class TestModule:
         a = Module()
         a.avail()
         a.avail("lmod")
-
 
     def test_collection(self):
         cmd = Module(["settarg"])
@@ -105,5 +109,5 @@ class TestModule:
         a = Module(1)
 
     def test_modules_in_login(self):
-        a = Module("lmod",debug=True)
+        a = Module("lmod", debug=True)
         a.test_modules(login=True)

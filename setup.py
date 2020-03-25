@@ -10,10 +10,10 @@ setup(
     long_description=open("README.rst").read(),
     url="https://github.com/HPC-buildtest/lmodule",
     license="MIT",
-    python_requires='~=3.6',
+    python_requires="~=3.6",
     classifiers=[
         "Development Status :: 3 - Alpha",
-	"Intended Audience :: Developers",
+        "Intended Audience :: Developers",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX :: Linux",

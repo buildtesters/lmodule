@@ -263,3 +263,76 @@ You can get the Lmod version by using the ``version()`` method.
     >>> a.version()
     '7.8.16'
 
+Retrieve User Collections
+--------------------------
+
+Lmod user collection are typically found in **$HOME/.lmod.d** and you can get all collections by running ``module -t savelist``.
+
+Similarly, we have a method ``get_user_collections`` that can return a **list** of user collections as shown below
+
+.. code-block:: python
+
+    >>> from lmod.module import get_user_collections
+    >>> get_user_collections()
+    ['GCC', 'Python', 'default', 'gcc_zlib', 'settarg', 'zlib']
+
+This could be used in conjunction with ``Module`` class with options like ``get_collection``, ``test_collection``, ``describe``
+to perform operation on the user collections.
+
+Shown below is an example of showing all user collections in a simple for-loop using the ``describe`` method from Module class
+
+.. code-block:: python
+
+    >>> for collection in get_user_collections():
+    ...     Module().describe(collection)
+    ...
+    Collection "GCC" contains:
+       1) GCCcore/8.3.0
+
+    Collection "Python" contains:
+       1) GCCcore/8.3.0                    7)  SQLite/3.29.0-GCCcore-8.3.0
+       2) bzip2/1.0.8-GCCcore-8.3.0        8)  XZ/5.2.4-GCCcore-8.3.0
+       3) zlib/1.2.11-GCCcore-8.3.0        9)  GMP/6.1.2-GCCcore-8.3.0
+       4) ncurses/6.1-GCCcore-8.3.0        10) libffi/3.2.1-GCCcore-8.3.0
+       5) libreadline/8.0-GCCcore-8.3.0    11) Python
+       6) Tcl/8.6.9-GCCcore-8.3.0
+
+    Collection "default" contains:
+       1) settarg
+
+    Collection "gcc_zlib" contains:
+       1) GCCcore/8.3.0    2) zlib
+
+    Collection "settarg" contains:
+       1) settarg
+
+    Collection "zlib" contains:
+       1) zlib
+
+
+Likewise, we can easily test all user collection using ``test_collection`` which gives opportunity to ensure all your
+user collection are valid before using them in your script
+
+.. code-block:: python
+
+    >>> for collection in get_user_collections():
+    ...     Module(debug=True).test_collection(collection)
+    ...
+    [DEBUG] Executing command: module restore GCC
+    [DEBUG] Return Code: 0
+    0
+    [DEBUG] Executing command: module restore Python
+    [DEBUG] Return Code: 0
+    0
+    [DEBUG] Executing command: module restore default
+    [DEBUG] Return Code: 0
+    0
+    [DEBUG] Executing command: module restore gcc_zlib
+    [DEBUG] Return Code: 0
+    0
+    [DEBUG] Executing command: module restore settarg
+    [DEBUG] Return Code: 0
+    0
+    [DEBUG] Executing command: module restore zlib
+    [DEBUG] Return Code: 0
+    0

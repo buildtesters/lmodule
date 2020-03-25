@@ -12,7 +12,8 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+
+sys.path.insert(0, os.path.abspath(".."))
 
 from lmod import LMODULE_VERSION
 from sphinx.ext.apidoc import main as sphinx_apidoc
@@ -25,7 +26,7 @@ author = "Shahzeb Siddiqui"
 
 # The full version, including alpha/beta/rc tags
 version = LMODULE_VERSION
-release = "beta"
+release = "alpha"
 
 
 # -- General configuration ---------------------------------------------------
