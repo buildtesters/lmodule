@@ -8,7 +8,7 @@ setup(
     author_email="shahzebmsiddiqui@gmail.com",
     description="Lmod Module API",
     long_description=open("README.rst").read(),
-    url="https://github.com/HPC-buildtest/lmodule",
+    url="https://github.com/buildtesters/lmodule",
     license="MIT",
     python_requires="~=3.6",
     classifiers=[

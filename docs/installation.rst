@@ -22,7 +22,7 @@ Git
 
 If you prefer to use the latest codebase you can clone the repository as follows::
 
-    $ git clone https://github.com/HPC-buildtest/lmodule.git
+    $ git clone https://github.com/buildtesters/lmodule.git
 
 Next you will want to install lmodule in your python environment::
 

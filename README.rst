@@ -4,13 +4,13 @@
     :target: https://lmodule.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. |travis| image:: https://travis-ci.com/HPC-buildtest/lmodule.svg?branch=master
-    :target: https://travis-ci.com/HPC-buildtest/lmodule
-.. |license| image:: https://img.shields.io/github/license/HPC-buildtest/lmodule.svg
-.. |codecov| image:: https://codecov.io/gh/HPC-buildtest/lmodule/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/HPC-buildtest/lmodule
-.. |coveralls| image:: https://coveralls.io/repos/github/HPC-buildtest/lmodule/badge.svg?branch=master
-    :target: https://coveralls.io/github/HPC-buildtest/lmodule?branch=master
+.. |travis| image:: https://travis-ci.com/buildtesters/lmodule.svg?branch=master
+    :target: https://travis-ci.com/buildtesters/lmodule
+.. |license| image:: https://img.shields.io/github/license/buildtesters/lmodule.svg
+.. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/buildtesters/lmodule
+.. |coveralls| image:: https://coveralls.io/repos/github/buildtesters/lmodule/badge.svg?branch=master
+    :target: https://coveralls.io/github/buildtesters/lmodule?branch=master
 .. |slack| image:: http://hpcbuildtest.herokuapp.com/badge.svg
 
 lmodule (Lmod Module)
@@ -33,7 +33,7 @@ We encourage community feedback and participation to help improve the lmodule AP
 
 - Join the slack community
 
-- Test the API and provide feedback in the form of `Issue <https://github.com/HPC-buildtest/lmodule/issues>`_ or Pull Request.
+- Test the API and provide feedback in the form of `Issue <https://github.com/buildtesters/lmodule/issues>`_ or Pull Request.
 
 
 Slack
@@ -45,7 +45,7 @@ If you already have an account then access the Slack Channel `here  <https://hpc
 LICENSE
 ---------
 
-lmodule is released under the MIT license. See the `LICENSE <https://github.com/HPC-buildtest/lmodule/blob/master/LICENSE>`_
+lmodule is released under the MIT license. See the `LICENSE <https://github.com/buildtesters/lmodule/blob/master/LICENSE>`_
 file for more details.
 
 
