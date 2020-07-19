@@ -36,6 +36,7 @@ release = "alpha"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinxcontrib.programoutput",
 ]
 
 apidoc = ["--force", "--no-toc", "-e", "--output-dir=api"]

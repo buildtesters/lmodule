@@ -7,7 +7,7 @@ Module Test Example
 You can use **Module** class to load arbitrary modules, in this example we
 run few examples using the **Module** class to illustrate few of the features.
 
-.. include:: ../examples/moduletest.py
+.. program-output:: cat ../examples/moduletest.py
 
 Shown below is sample output
 
@@ -34,16 +34,21 @@ Automating Module Load Test for environmentmodules
 If your system has environment-modules, you can make use of this script to
 automate module load test using **Module** class.
 
-.. include:: ../examples/environmentmodules_moduleloadtest.py
+.. program-output:: cat ../examples/environmentmodules_moduleloadtest.py
 
 Collection Example
 -------------------
 
-.. include:: ../examples/collection.py
+This example, get's all module collections and print their name and tests collection 
+command. Next, we test **Python** collection in debug mode followed by Default collection.
+Finally, we wrap up by testing an invalid module collection which should raise error. 
 
-The next example shows how we can load a module and save into a collection.
+.. program-output:: cat ../examples/collection.py
 
-.. include:: ../examples/saving_collection.py
+This next example will load **zlib** module, save into module collection named **zlib** and 
+show content of collection of newly created collection **zlib**.
+
+.. program-output:: cat ../examples/saving_collection.py
 
 Spider Example
 ---------------
@@ -52,4 +57,4 @@ This next example makes use of Spider class to get unique names, parent modules,
 retrieve all version of GCC, and use Spider on directory tree to get all names and
 test each module.
 
-.. include:: ../examples/spider_example.py
+.. program-output:: cat ../examples/spider_example.py
