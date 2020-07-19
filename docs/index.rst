@@ -40,6 +40,7 @@ Here are few reasons why you would want to use lmodule
    module.rst
    spider.rst
    moduleloadtest.rst
+   examples.rst
 
 
 
