@@ -13,13 +13,14 @@
     :target: https://coveralls.io/github/buildtesters/lmodule?branch=master
 .. |slack| image:: http://hpcbuildtest.herokuapp.com/badge.svg
 
-lmodule (Lmod Module)
+Lmodule (Lmod Module)
 ---------------------
 
-lmodule is a Python 3 API for `Lmod <https://lmod.readthedocs.io/>`_ module system. The API can be used
-end-users and system-administrators. End-users can utilize the API for interacting with module system to run
-their application. System Administrators can utilize the API for testing their Software Stack and retrieve
-output from the Lmod spider command.
+Lmodule is a Python 3 API for `Lmod <https://lmod.readthedocs.io/>`_ module system. Lmodule can assist HPC facilities in testing their
+software stack via ``module load`` testing. The API can be used by developers and system-administrators for interacting with module system.
+Developers can utilize the Lmodule API for interacting  with module system in their python code, while System Administrators can leverage 
+the Lmodule API for testing their Software Stack.
+
 
 Author
 -------
@@ -48,4 +49,8 @@ LICENSE
 lmodule is released under the MIT license. See the `LICENSE <https://github.com/buildtesters/lmodule/blob/master/LICENSE>`_
 file for more details.
 
+Talks
+------
+
+- **Automate Module Testing with Lmodule** at `EasyBuild User Meeting <https://easybuild.io/eum/>`_ - `Slides <https://easybuild.io/eum/023_eum21_Lmodule.pdf>`_,  `Video <https://www.youtube.com/watch?v=RyUhPSzIrqQ&list=PLhnGtSmEGEQh0pCtmkFQsDzeoo6tbYnyZ&index=30>`_
 
