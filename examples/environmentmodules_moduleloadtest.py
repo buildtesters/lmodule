@@ -18,29 +18,23 @@ for module in modules:
     if os.path.exists(tree):
         print(f"Skipping tree: {tree}")
         continue
-    if re.search("(\(default\))$",module):
-        module = module.replace('(default)','')
+    if re.search("(\(default\))$", module):
+        module = module.replace("(default)", "")
 
-    cmd = Module(module,debug=True)
+    cmd = Module(module, debug=True)
     ret = cmd.test_modules(login=True)
     total += 1
     # if returncode is 0 mark as PASS
     if ret == 0:
-        pass_counter+=1
+        pass_counter += 1
     else:
-        fail_counter+=1
+        fail_counter += 1
 
 pass_rate = pass_counter * 100 / total
 fail_rate = fail_counter * 100 / total
 
-print ("-------- SUMMARY ---------")
-print (f"Total Pass: {pass_counter}/{total}")
-print (f"Total Failure: {fail_counter}/{total}")
-print (f"PASS RATE: {pass_rate:.3f}")
-print (f"FAIL RATE: {fail_rate:.3f}")
-
-
-
-
-
-
+print("-------- SUMMARY ---------")
+print(f"Total Pass: {pass_counter}/{total}")
+print(f"Total Failure: {fail_counter}/{total}")
+print(f"PASS RATE: {pass_rate:.3f}")
+print(f"FAIL RATE: {fail_rate:.3f}")
