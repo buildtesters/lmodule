@@ -41,6 +41,10 @@ extensions = [
     "sphinx.ext.intersphinx",
 ]
 
+
+# The master toctree document.
+master_doc = "index"
+
 apidoc = ["--force", "--no-toc", "-e", "--output-dir=api"]
 sphinx_apidoc(apidoc + ["../lmod"])
 
