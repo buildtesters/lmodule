@@ -120,6 +120,88 @@ class Module:
 
         return ret.stdout.split()
 
+    def spider(self, name=None):
+        """ This method invokes ``module spider`` command. One can specify input arguments
+        as a string or list type which are converted into string.
+
+        If no arguments are specified to ``Module()`` and spider class we will return the output
+        of ``module spider`` command which is a list of all modules.
+
+        .. code-block:: python
+
+            m = Module()
+            m.spider()
+
+        If modules are specified during instance creation then we will use those modules during module spider output.
+        In this following example, we will run ``module spider gcc python``
+
+        .. code-block:: python
+
+            m = Module("gcc python")
+            m.spider()
+
+        We can also specify modules via spider method which will be read first even if modules are passed during object creation
+        time. In example below
+
+        .. code-block:: python
+
+            >>> m = Module(["gcc", "python"])
+            >>> m.modules
+            ['gcc', 'python']
+            >>> out = m.spider("gcc")
+            >>> print(out)
+
+            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+              gcc:
+            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                 Versions:
+                    gcc/9.3.0-n7p74fd
+                    gcc/10.2.0-37fmsw7
+
+            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+              For detailed information about a specific "gcc" package (including how to load the modules) use the module's full name.
+              Note that names that have a trailing (E) are extensions provided by other modules.
+              For example:
+
+                 $ module spider gcc/10.2.0-37fmsw7
+            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        :param name: Input modules to run ``module spider``. Input can be a string or list
+        :type name: str, list
+        :return: Output of ``module spider`` command as a string type
+        :rtype: str
+
+        """
+
+        if name:
+            # raise error if input is not string or list
+            if not isinstance(name, (str, list)):
+                raise TypeError(f"{name} must be a string or list")
+
+
+            # for list items we convert each item to string and join list into a string
+            if isinstance(name, list):
+                name = [str(i) for i in name]
+                name = ' '.join(name)
+
+            cmd = f"module spider {name}"
+
+        elif self.modules:
+            cmd = f"module spider {' '.join(self.modules)}"
+        else:
+            cmd = "module spider"
+
+        ret = subprocess.run(
+            cmd,
+            shell=True,
+            encoding="utf-8",
+            universal_newlines=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+        return ret.stdout
+
     def version(self):
         """Get Lmod version by reading environment variable ``LMOD_VERSION`` and return as a string
 

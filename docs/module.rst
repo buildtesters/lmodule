@@ -252,6 +252,99 @@ If you want to get a listing of all modules (i.e ``module avail``), then don't p
     module -t avail
     ['/usr/share/lmod/lmod/modulefiles/Core:', 'lmod', 'settarg']
 
+
+Module Spider
+---------------
+
+The ``module spider`` command can be used to provide extra details for available modules along with details about specific
+versions and module description. The ``spider`` method can be used to mimic this behavior. Running ``module spider`` without
+any arguments will return all available modules in MODULEPATH.
+
+The following snippet below will mimic ``module spider`` command and the output is a string type which we can print.
+
+.. code-block:: python
+
+    >>> m = Module()
+    >>> out = m.spider()
+    >>> print(out)
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    The following is a list of the modules and extensions currently available:
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      lmod: lmod
+        Lmod: An Environment Module System
+
+      settarg: settarg
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    To learn more about a package execute:
+
+       $ module spider Foo
+
+    where "Foo" is the name of a module.
+
+    To find detailed information about a particular package you
+    must specify the version if there is more than one version:
+
+       $ module spider Foo/11.1
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+If we specify modules during instance creation time, those modules will be used when invoking ``spider`` class.
+In this next example we mimic ``module spider lmod`` command.
+
+.. code-block:: python
+
+    >>> m = Module("lmod")
+    >>> out = m.spider()
+    >>> print(out)
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      lmod: lmod
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Description:
+          Lmod: An Environment Module System
+
+
+        This module can be loaded directly: module load lmod
+
+You may specify modules through ``spider`` method which can be a string or list type. If you want to
+specify multiple modules you can do one of the following
+
+.. code-block:: python
+
+   >>> m = Module()
+   >>> out = m.spider("gcc python")
+
+.. code-block:: python
+
+   >>> m = Module()
+   >>> out = m.spider([gcc, python])
+
+If you specify a list, each item will be converted to string before invoking ``module spider`` command. If you specify
+modules during instance creation but specify modules in ``spider`` method then we will use modules specified by spider output
+as we can see below.
+
+.. code-block:: python
+
+    >>> m = Module("xyz")
+    >>> m.spider()
+    >>> print(m.spider())
+    Lmod has detected the following error: Unable to find: "xyz".
+
+    >>> print(m.spider("lmod"))
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      lmod: lmod
+    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Description:
+          Lmod: An Environment Module System
+
+
+        This module can be loaded directly: module load lmod
+
 Get Lmod Version
 ------------------
 
