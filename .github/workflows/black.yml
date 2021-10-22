@@ -13,24 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup black linter
-        run: conda create --quiet --name black black
-
-      - name: Lint python code
-        run: |
-          export PATH="/usr/share/miniconda/bin:$PATH"
-          source activate black
-          black --check lmod tests/ examples/
-
-      - name: Derive organization name
-        if: github.event_name == 'pull_request' && failure()
-        run: echo ::set-env name=IS_FORKED::$(if [ -z "$GITHUB_HEAD_REF" ]; then echo "no"; else echo "yes"; fi)
-        shell: bash
-
-      - name: Comment Pull Request
-        if: github.event_name == 'pull_request' && failure() && env.IS_FORKED == 'no'
-        uses: marocchino/sticky-pull-request-comment@v1.1.0
+      # use black github action see https://black.readthedocs.io/en/stable/integrations/github_actions.html
+      - uses: psf/black@stable
         with:
-          message: 'Please format your code with [black](https://black.readthedocs.io) version 19.3b0: `black lmod tests/ examples/`.'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          options: "--check"
+          src: "lmod examples"
+
+      - name: Check imports with pyflakes
+        run: |
+          pip install pyflakes
+          pyflakes lmod
 

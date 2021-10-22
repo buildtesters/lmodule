@@ -5,10 +5,10 @@ from lmod.spider import Spider
 
 class ModuleLoadTest:
     """This is the class declaration of ModuleLoadTest. This class will automate module load
-       test for all modules in one or more module tree (Software Stack) retrieved by Spider class. The output
-       of ``module load`` is a 0 or 1 that can be used to determine PASS/FAIL on a module. Each module test will attempt
-       to test the ``module load`` command using the ``Module().test_modules()``. In order to run tests properly,
-       MODULEPATH must be set in your environment.
+    test for all modules in one or more module tree (Software Stack) retrieved by Spider class. The output
+    of ``module load`` is a 0 or 1 that can be used to determine PASS/FAIL on a module. Each module test will attempt
+    to test the ``module load`` command using the ``Module().test_modules()``. In order to run tests properly,
+    MODULEPATH must be set in your environment.
     """
 
     def __init__(
@@ -25,35 +25,35 @@ class ModuleLoadTest:
     ):
         """This is the initializer method for ModuleLoadTest class.
 
-           Parameters:
-           -----------
-           :param tree: specify one or more module trees to test. The module tree must be root directory where modulefiles
-            are found. Use a colon ``:`` to define more than one module tree.
-           :type tree: str
+        Parameters:
+        -----------
+        :param tree: specify one or more module trees to test. The module tree must be root directory where modulefiles
+         are found. Use a colon ``:`` to define more than one module tree.
+        :type tree: str
 
-           :param purge: control whether to run ``module purge`` before loading each module
-           :type purge: bool
+        :param purge: control whether to run ``module purge`` before loading each module
+        :type purge: bool
 
-           :param force: control whether to run ``module --force purge`` before loading each module
-           :type purge: bool
+        :param force: control whether to run ``module --force purge`` before loading each module
+        :type purge: bool
 
-           :param login: controls whether to run test in login shell when ``login=True``. By default tests are run in sub-shell.
-           :type purge: bool
+        :param login: controls whether to run test in login shell when ``login=True``. By default tests are run in sub-shell.
+        :type purge: bool
 
-           :param count: control how many tests to run before exiting
-           :type purge: int
+        :param count: control how many tests to run before exiting
+        :type purge: int
 
-           :param name: filter modules by software name to test
-           :type name: list
+        :param name: filter modules by software name to test
+        :type name: list
 
-           :param include: specify a list of modules to **include** by full canonical name for testing
-           :type purge: list
+        :param include: specify a list of modules to **include** by full canonical name for testing
+        :type purge: list
 
-           :param exclude: specify a list of modules to **exclude** by full canonical name for testing
-           :type purge: list
+        :param exclude: specify a list of modules to **exclude** by full canonical name for testing
+        :type purge: list
 
-           :return: Result of module load test
-           :rtype: None
+        :return: Result of module load test
+        :rtype: None
         """
 
         # setting module tree to argument passed in or default to MODULEPATH
@@ -90,7 +90,10 @@ class ModuleLoadTest:
 
         for module_name in modules:
             module_cmd = Module(
-                module_name, purge=self.purge, force=self.force, debug=self.debug,
+                module_name,
+                purge=self.purge,
+                force=self.force,
+                debug=self.debug,
             )
             ret = module_cmd.test_modules(self.login)
 
