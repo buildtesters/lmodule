@@ -31,3 +31,12 @@ jobs:
         module use $LMOD_PKG/modulefiles/Core
         coverage run -m pytest -vra tests/
         coverage report -m
+
+    - uses: actions/checkout@v2
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ failure() }}
+      timeout-minutes: 30
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2.1.0

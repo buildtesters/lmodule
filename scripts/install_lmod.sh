@@ -10,7 +10,7 @@ PREFIX=/opt/apps
 
 PKG_URL="https://github.com/TACC/Lmod/archive/${VERSION}.tar.gz"
 export PATH=$PREFIX/lmod/$VERSION/libexec:$PATH
-export MOD_INIT=$PREFIX/lmod/$VERSION/init/bash
+export MOD_INIT=$PREFIX/lmod/$VERSION/init/profile
 
 echo "Installing ${LMOD_PACKAGE} @ ${PREFIX}..."
 mkdir -p ${PREFIX}
