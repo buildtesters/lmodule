@@ -41,6 +41,7 @@ Here are few reasons why you would want to use lmodule
    spider.rst
    moduleloadtest.rst
    examples.rst
+   api.rst
 
 
 

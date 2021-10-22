@@ -37,6 +37,8 @@ release = "alpha"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinxcontrib.programoutput",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.intersphinx",
 ]
 
 apidoc = ["--force", "--no-toc", "-e", "--output-dir=api"]
@@ -62,3 +64,7 @@ html_theme = "sphinx_rtd_theme"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = []
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+}
