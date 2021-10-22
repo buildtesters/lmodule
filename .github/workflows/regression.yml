@@ -26,9 +26,8 @@ jobs:
     - name: Run lmodule regresison test for python version - ${{ matrix.python-version }}
       run: |
         LMOD_VERSION=7.8.2
-        source scripts/install_lmod.sh $LMOD_VERSION
-        source /opt/apps/lmod/7.8.2/init/profile
-        module use $LMOD_PKG/modulefiles/Core
+        sh scripts/install_lmod.sh $LMOD_VERSION
+        source /opt/apps/lmod/lmod/init/profile
         coverage run -m pytest -vra tests/
         coverage report -m
 
