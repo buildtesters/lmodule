@@ -24,6 +24,9 @@ coverage.xml
 *.cover
 .pytest_cache/
 
+# auto generated api docs are stored in docs/api
+docs/api/
+
 # Sphinx documentation
 docs/_build/
 
