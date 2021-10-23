@@ -28,6 +28,7 @@ jobs:
         LMOD_VERSION=7.8.2
         sh scripts/install_lmod.sh $LMOD_VERSION
         source /opt/apps/lmod/lmod/init/profile
+        pip install -r docs/requirements.txt
         coverage run -m pytest -vra tests/
         coverage report -m
 
