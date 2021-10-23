@@ -10,7 +10,10 @@ PREFIX=/opt/apps
 
 PKG_URL="https://github.com/TACC/Lmod/archive/${VERSION}.tar.gz"
 export PATH=$PREFIX/lmod/$VERSION/libexec:$PATH
-export MOD_INIT=$PREFIX/lmod/$VERSION/init/bash
+export MOD_INIT=$PREFIX/lmod/$VERSION/init/profile
+
+sudo apt-get install lua5.3 lua-posix-dev lua-posix tcl tcl-dev tcl8.6 tcl8.6-dev lua-term lua-json lua-filesystem
+
 
 echo "Installing ${LMOD_PACKAGE} @ ${PREFIX}..."
 mkdir -p ${PREFIX}
@@ -19,8 +22,3 @@ wget ${PKG_URL} && tar xfz *${VERSION}.tar.gz
 set -e
 cd $LMOD_PACKAGE
 ./configure --prefix=$PREFIX && make && make install
-
-if [ ! -z $MOD_INIT ]; then
-        source $MOD_INIT
-        type module
-fi
