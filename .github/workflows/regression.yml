@@ -29,6 +29,8 @@ jobs:
         sh scripts/install_lmod.sh $LMOD_VERSION
         source /opt/apps/lmod/lmod/init/profile
         pip install -r docs/requirements.txt
+        module --version
+        module av
         coverage run -m pytest -vra tests/
         coverage report -m
 
