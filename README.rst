@@ -1,11 +1,8 @@
-|license| |docs| |travis| |codecov| |coveralls| |slack|
+|license| |docs| |codecov| |coveralls| |slack|
 
 .. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
     :target: https://lmodule.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
-
-.. |travis| image:: https://travis-ci.com/buildtesters/lmodule.svg?branch=master
-    :target: https://travis-ci.com/buildtesters/lmodule
 .. |license| image:: https://img.shields.io/github/license/buildtesters/lmodule.svg
 .. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/buildtesters/lmodule
