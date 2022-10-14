@@ -10,7 +10,7 @@ def get_user_collections():
     :rtype: list
     """
 
-    collections = "module -t savelist"
+    collections = "bash -l -c 'module -t savelist'"
     ret = subprocess.run(
         collections,
         shell=True,
@@ -62,18 +62,18 @@ class Module:
         self.modules = modules
 
         # when no modules are passed into initializer, just return immediately
-        if self.modules is None:
+        if not self.modules:
             return
 
         # catch all exceptions to argument modules. Must be of type list or string.
-        if (not isinstance(modules, list)) and (not isinstance(modules, str)):
+        if not isinstance(self.modules, (str, list)):
             raise TypeError(
-                f"Expecting of type 'list' or 'string' for argument modules. Got of type {type(modules)}"
+                f"Expecting of type 'list' or 'string' for argument modules. Got of type {type(self.modules)}"
             )
 
         # if argument is a string, than use space as delimeter to get list of all modules.
-        if isinstance(modules, str):
-            self.modules = modules.split(" ")
+        if isinstance(self.modules, str):
+            self.modules = self.modules.split(" ")
 
         # building actual command. Note that we are doing command chaining when loading modules
         self.module_load_cmd = [f"module load {x} && " for x in self.modules]
@@ -105,11 +105,14 @@ class Module:
         :rtype: list
         """
 
-        cmd = "module -t avail"
+        cmd = "bash -l -c 'module -t avail'"
         # if argument specified
         if name:
-            cmd = f"module -t avail {name}"
-        print(cmd)
+            cmd = f"bash -l -c 'module -t avail {name}'"
+
+        if self.debug:
+            print("Running command: ", cmd)
+
         ret = subprocess.run(
             cmd,
             shell=True,
@@ -183,12 +186,12 @@ class Module:
                 name = [str(i) for i in name]
                 name = " ".join(name)
 
-            cmd = f"module spider {name}"
+            cmd = f"bash -l -c 'module spider {name}'"
 
         elif self.modules:
-            cmd = f"module spider {' '.join(self.modules)}"
+            cmd = f"bash -l -c 'module spider {' '.join(self.modules)}'"
         else:
-            cmd = "module spider"
+            cmd = "bash -l -c 'module spider'"
 
         ret = subprocess.run(
             cmd,
@@ -223,7 +226,7 @@ class Module:
         :rtype: int
         """
 
-        cmd = f"module is-avail {name}"
+        cmd = f"bash -l -c 'module is-avail {name}'"
 
         ret = subprocess.run(
             cmd,
@@ -297,7 +300,7 @@ class Module:
         if not isinstance(collection, str):
             raise TypeError(f"Type Error: {collection} is not of type string")
 
-        module_save_cmd = f"{self.get_command()} && module save {collection}"
+        module_save_cmd = f"bash -l -c '{self.get_command()} && module save {collection}'"
 
         ret = subprocess.run(
             module_save_cmd,
@@ -332,7 +335,7 @@ class Module:
         if not isinstance(collection, str):
             raise TypeError(f"Type Error: {collection} is not of type string")
 
-        module_describe_cmd = f"module describe {collection}"
+        module_describe_cmd = f"bash -l -c 'module describe {collection}'"
         ret = subprocess.run(
             module_describe_cmd,
             shell=True,
@@ -389,7 +392,7 @@ class Module:
         if not isinstance(collection, str):
             raise TypeError(f"Type Error: {collection} is not of type string")
 
-        module_restore_cmd = f"module restore {collection}"
+        module_restore_cmd = f"bash -l -c 'module restore {collection}'"
         ret = subprocess.run(
             module_restore_cmd,
             shell=True,
