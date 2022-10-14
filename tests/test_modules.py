@@ -111,3 +111,17 @@ class TestModule:
     def test_modules_in_login(self):
         a = Module("lmod", debug=True)
         a.test_modules(login=True)
+
+    def test_spider(self):
+        a = Module()
+        a.spider()
+
+        a = Module('gcc')
+        a.spider()
+        a.spider("gcc")
+        a.spider(['lmod', 'settarg'])
+
+
+        with pytest.raises(TypeError):
+            a.spider(1)
+
