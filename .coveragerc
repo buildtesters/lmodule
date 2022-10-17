@@ -24,6 +24,9 @@ exclude_lines =
     if __name__ == .__main__.:
 
 ignore_errors = True
+skip_empty = True
+sort = -cover
+precision = 2
 
 [html]
 directory = htmlcov
