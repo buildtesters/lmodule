@@ -33,6 +33,7 @@ jobs:
         module av
         coverage run -m pytest -vra tests/
         coverage report -m
+        coverage json
 
     - uses: actions/checkout@v2
     - name: Setup tmate session
