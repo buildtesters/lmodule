@@ -33,15 +33,10 @@ jobs:
         module av
         coverage run -m pytest -vra tests/
         coverage report -m
-        coverage json
-
-    - uses: actions/checkout@v2
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ failure() }}
-      timeout-minutes: 30
+        coverage xml        
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
         verbose: true
+        files: ./coverage.xml
