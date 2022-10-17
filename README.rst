@@ -1,4 +1,4 @@
-|license| |docs| |codecov| |coveralls| |slack|
+|license| |docs| |codecov|  |slack|
 
 .. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
     :target: https://lmodule.readthedocs.io/en/latest/?badge=latest
@@ -6,8 +6,6 @@
 .. |license| image:: https://img.shields.io/github/license/buildtesters/lmodule.svg
 .. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/buildtesters/lmodule
-.. |coveralls| image:: https://coveralls.io/repos/github/buildtesters/lmodule/badge.svg?branch=master
-    :target: https://coveralls.io/github/buildtesters/lmodule?branch=master
 .. |slack| image:: http://hpcbuildtest.herokuapp.com/badge.svg
 
 Lmodule (Lmod Module)
