@@ -249,7 +249,6 @@ If you want to get a listing of all modules (i.e ``module avail``), then don't p
 
     >>> a = Module()
     >>> a.avail()
-    module -t avail
     ['/usr/share/lmod/lmod/modulefiles/Core:', 'lmod', 'settarg']
 
 
@@ -310,8 +309,21 @@ In this next example we mimic ``module spider lmod`` command.
 
         This module can be loaded directly: module load lmod
 
-You may specify modules through ``spider`` method which can be a string or list type. If you want to
-specify multiple modules you can do one of the following
+You may specify modules through ``spider`` method which **must** be a *string* or *list* type. If you specify an invalid type when specifying modules
+to ``spider`` method then you will get an exception of **TypeError** as shown below
+
+.. code-block:: python
+
+    >>> m = Module()
+    >>> m.spider(1)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "/Users/siddiq90/Documents/github/lmodule/lmod/module.py", line 182, in spider
+        raise TypeError(f"{name} must be a string or list")
+    TypeError: 1 must be a string or list
+
+
+If you want to specify multiple modules you can do one of the following
 
 .. code-block:: python
 
@@ -323,9 +335,10 @@ specify multiple modules you can do one of the following
    >>> m = Module()
    >>> out = m.spider([gcc, python])
 
-If you specify a list, each item will be converted to string before invoking ``module spider`` command. If you specify
-modules during instance creation but specify modules in ``spider`` method then we will use modules specified by spider output
-as we can see below.
+If you specify a list, each item will be converted to string before invoking ``module spider`` command. If you create
+a class instance with a list of modules like ``m = Module("xyz")`` then a call **m.spider()** will run **module spider xyz**. However,
+you may specify modules in the **spider** method as an argument to override modules in the class instance for instance we run
+``m.spider("lmod")`` and we notice its running **module spider lmod**.
 
 .. code-block:: python
 
@@ -411,21 +424,21 @@ user collection are valid before using them in your script
     >>> for collection in get_user_collections():
     ...     Module(debug=True).test_collection(collection)
     ...
-    [DEBUG] Executing command: module restore GCC
+    [DEBUG] Executing command: bash -l -c 'module restore GCC'
     [DEBUG] Return Code: 0
     0
-    [DEBUG] Executing command: module restore Python
+    [DEBUG] Executing command: bash -l -c  'module restore Python'
     [DEBUG] Return Code: 0
     0
-    [DEBUG] Executing command: module restore default
+    [DEBUG] Executing command: bash -l -c  'module restore default'
     [DEBUG] Return Code: 0
     0
-    [DEBUG] Executing command: module restore gcc_zlib
+    [DEBUG] Executing command: bash -l -c  'module restore gcc_zlib'
     [DEBUG] Return Code: 0
     0
-    [DEBUG] Executing command: module restore settarg
+    [DEBUG] Executing command: bash -l -c  'module restore settarg'
     [DEBUG] Return Code: 0
     0
-    [DEBUG] Executing command: module restore zlib
+    [DEBUG] Executing command: bash -l -c  'module restore zlib'
     [DEBUG] Return Code: 0
     0
