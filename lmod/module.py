@@ -300,7 +300,9 @@ class Module:
         if not isinstance(collection, str):
             raise TypeError(f"Type Error: {collection} is not of type string")
 
-        module_save_cmd = f"bash -l -c '{self.get_command()} && module save {collection}'"
+        module_save_cmd = (
+            f"bash -l -c '{self.get_command()} && module save {collection}'"
+        )
 
         ret = subprocess.run(
             module_save_cmd,
