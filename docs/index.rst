@@ -1,6 +1,16 @@
 Welcome to lmodule documentation!
 ===================================
 
+|docs| |codecov|  |slack|
+
+.. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
+    :target: https://lmodule.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+.. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/buildtesters/lmodule
+.. |slack| image:: http://hpcbuildtest.herokuapp.com/badge.svg
+    :target: https://hpcbuildtest.slack.com/
+
 `lmodule <https://github.com/buildtesters/lmodule>`_ is a Python API for `Lmod <https://lmod.readthedocs.io/en/latest>`_
 module system. lmodule was originally part of `buildtest <https://github.com/buildtesters/buildtest>`_ and
 we decided that it could benefit the entire community for folks interested in using the API but not relying on buildtest.
