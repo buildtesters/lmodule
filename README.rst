@@ -49,5 +49,5 @@ file for more details.
 Talks
 ------
 
-- **Automate Module Testing with Lmodule** at `EasyBuild User Meeting <https://easybuild.io/eum/>`_ - `Slides <https://easybuild.io/eum/023_eum21_Lmodule.pdf>`_,  `Video <https://www.youtube.com/watch?v=RyUhPSzIrqQ&list=PLhnGtSmEGEQh0pCtmkFQsDzeoo6tbYnyZ&index=30>`_
+- **Automate Module Testing with Lmodule** at `EasyBuild User Meeting <https://easybuild.io/eum/>`_ - `Slides <https://easybuild.io/eum21/023_eum21_Lmodule.pdf>`_,  `Video <https://www.youtube.com/watch?v=RyUhPSzIrqQ&list=PLhnGtSmEGEQh0pCtmkFQsDzeoo6tbYnyZ&index=30>`_
 
