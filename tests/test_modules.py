@@ -45,7 +45,7 @@ class TestModule:
         a.avail("lmod")
 
     def test_collection(self):
-        cmd = Module(["settarg"],debug=True)
+        cmd = Module(["settarg"], debug=True)
         # save as collection name "settarg"
         cmd.save("settarg")
         # save as "default" collection
@@ -106,7 +106,7 @@ class TestModule:
         raises=TypeError,
     )
     def test_type_error(self):
-        a = Module(1)
+        Module(1)
 
     def test_modules_in_login(self):
         a = Module("lmod", debug=True)
@@ -116,12 +116,10 @@ class TestModule:
         a = Module()
         a.spider()
 
-        a = Module('gcc')
+        a = Module("gcc")
         a.spider()
         a.spider("gcc")
-        a.spider(['lmod', 'settarg'])
-
+        a.spider(["lmod", "settarg"])
 
         with pytest.raises(TypeError):
             a.spider(1)
-

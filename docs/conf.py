@@ -13,7 +13,8 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(".."))
+here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, here)
 
 from lmod import LMODULE_VERSION
 from sphinx.ext.apidoc import main as sphinx_apidoc
