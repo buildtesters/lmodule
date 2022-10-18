@@ -1,6 +1,10 @@
 import os
 from lmod.spider import Spider
 
+lmodule_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.environ["LMODULE_MODULE_ROOT"] = os.path.join(lmodule_root, "tests", "modules")
+module_tree = os.path.join(os.getenv("LMODULE_MODULE_ROOT"), "core")
+
 
 class TestSpider:
     def test_get_spider_trees(self):
@@ -27,7 +31,7 @@ class TestSpider:
     def test_get_modules(self):
         """This test will retrieve full canonical module names from ``get_modules`` method which is expected to return a
         dictionary"""
-        a = Spider()
+        a = Spider(module_tree)
         # this will return the full canonical module name which should be a list.
         assert isinstance(a.get_modules(), dict)
 
@@ -36,3 +40,15 @@ class TestSpider:
         a = Spider()
         parent_modules = a.get_parents()
         assert isinstance(parent_modules, list)
+
+        a = Spider(module_tree)
+        assert "gcc/9.3.0" in a.get_parents()
+
+    def test_get_all_versions(self):
+
+        a = Spider(module_tree)
+        openmpi_versions = a.get_all_versions("openmpi")
+        assert "3.0" in openmpi_versions
+        assert "3.1" in openmpi_versions
+
+        assert not a.get_all_versions("lmod")
