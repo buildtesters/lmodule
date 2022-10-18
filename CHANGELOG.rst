@@ -1,3 +1,12 @@
+v0.3.0 - Oct 18th, 2022
+-------------------------
+
+- Make sure all commands work in login shell with `Module` class `#23 <https://github.com/buildtesters/lmodule/pull/23>`_.
+- Update Documentation for modules class
+- Update codecov setting for commenting on PRs `#25 <https://github.com/buildtesters/lmodule/pull/25>`_
+- Update black setting in regression test, pre-commit and applying to source code `#31 <https://github.com/buildtesters/lmodule/pull/31>`_
+- Increase regression test coverage for `spider` class `#34 <https://github.com/buildtesters/lmodule/pull/34>`_
+
 v0.2.0 - Oct 24 2021
 ---------------------
 
