@@ -7,6 +7,7 @@
 .. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/buildtesters/lmodule
 .. |slack| image:: http://hpcbuildtest.herokuapp.com/badge.svg
+    :target: https://hpcbuildtest.slack.com
 
 Lmodule (Lmod Module)
 ---------------------
