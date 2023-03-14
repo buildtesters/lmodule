@@ -12,7 +12,7 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # use black github action see https://black.readthedocs.io/en/stable/integrations/github_actions.html
       - uses: psf/black@stable
