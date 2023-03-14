@@ -132,3 +132,21 @@ class TestModule:
             a.checkSyntax(1)
 
         a.checkSyntax("lmod")
+
+    def test_module_overview(self):
+        # module overview
+        a = Module()
+        a.overview()
+
+        # module overview lmod
+        print(a.overview("lmod"))
+
+        # module overview lmod settarg
+        print(a.overview(["lmod", "settarg"]))
+
+        # input must be string or list of strings. Passing an integer should raise TypeError
+        with pytest.raises(TypeError):
+            a.overview(1)
+
+        b = Module("lmod")
+        b.overview()
