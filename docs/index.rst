@@ -15,6 +15,8 @@ Welcome to lmodule documentation!
     :target: https://pypi.org/project/lmodule/
 .. |python| image:: https://img.shields.io/pypi/pyversions/lmodule.svg
     :target: https://pypi.org/project/lmodule/
+.. |version| image:: https://img.shields.io/github/release/buildtesters/lmodule.svg
+    :target: https://github.com/buildtesters/lmodule/releases
 
 `lmodule <https://github.com/buildtesters/lmodule>`_ is a Python API for `Lmod <https://lmod.readthedocs.io/en/latest>`_
 module system. lmodule was originally part of `buildtest <https://github.com/buildtesters/buildtest>`_ and
