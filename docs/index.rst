@@ -1,7 +1,7 @@
 Welcome to lmodule documentation!
 ===================================
 
-|docs| |codecov|  |slack|
+|docs| |codecov|
 
 .. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
     :target: https://readthedocs.org/projects/lmodule/builds/
