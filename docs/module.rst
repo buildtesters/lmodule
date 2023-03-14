@@ -358,6 +358,58 @@ you may specify modules in the **spider** method as an argument to override modu
 
         This module can be loaded directly: module load lmod
 
+
+Module Overview
+-----------------
+
+The ``module overview`` command can be used to a summary of available modules in your system. The output is slightly different
+than ``module avail`` it will show a count of each modules next to the module name.
+
+Lmodule supports this via **overview** method that can be invoked via Module class. The following snippet will show an example
+where we get a summary of all modules in our system.
+
+.. code-block:: python
+
+    >>> m = Module()
+    >>> print(m.overview())
+
+    ----------------------------------------------------------------------------- /Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core ------------------------------------------------------------------------------
+    autoconf-archive (1)   automake    (1)   bzip2     (1)   gcc  (2)   gmp (1)   libiconv   (1)   libtool (1)   mpc  (2)   ncurses (1)   pkgconf  (1)   zlib (1)
+    autoconf         (1)   berkeley-db (1)   diffutils (1)   gdbm (1)   isl (2)   libsigsegv (1)   m4      (1)   mpfr (2)   perl    (1)   readline (1)   zstd (1)
+
+    -------------------------------------------------------------------------------------------- /usr/local/Cellar/lmod/8.6.14/modulefiles/Core --------------------------------------------------------------------------------------------
+    lmod (1)   settarg (1)
+
+You can specify argument to ``Module`` class and invoke the ``overview`` method which will
+show summary for specified module. Likewise, you can specify an argument to ``overview`` method which can be a list
+or string type. If you specify an invalid type then you will get a **TypeError** exception. Shown below are few example
+usage
+
+.. code-block:: python
+
+    >>> m = Module()
+    >>> print(m.overview(['gcc', 'lmod']))
+
+    ----------------------------------------------------------------------------- /Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core ------------------------------------------------------------------------------
+    gcc (2)
+
+    -------------------------------------------------------------------------------------------- /usr/local/Cellar/lmod/8.6.14/modulefiles/Core --------------------------------------------------------------------------------------------
+    lmod (1)
+
+
+    >>> print(m.overview('lmod'))
+
+    -------------------------------------------------------------------------------------------- /usr/local/Cellar/lmod/8.6.14/modulefiles/Core --------------------------------------------------------------------------------------------
+    lmod (1)
+
+    >>> print(m.overview(123))
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "lmod/module.py", line 219, in overview
+        raise TypeError(f"{name} must be a string or list")
+    TypeError: 123 must be a string or list
+
+
 Get Lmod Version
 ------------------
 
