@@ -238,6 +238,39 @@ class Module:
 
         return ret.returncode
 
+    def checkSyntax(self, name=None):
+        """This method implements the ``module --checkSyntax load`` command which is used for checking
+        syntax error for modulefile. The return is an exit code, if its 0 there is no error otherwise
+        there is a syntax error in modulefile.
+
+        If ``name`` is specified, we can check check for any modulefile, otherwise we use the default modules passed
+        to the Module class.
+
+        Parameters:
+
+        :param name: argument passed to ``module --checkSyntax load`` to check for syntax error
+        :type name: str, optional
+        """
+
+        if name and not isinstance(name, str):
+            raise TypeError(f"{name} must be a string")
+
+        modules = name or " ".join(self.modules)
+        cmd = f"bash -l -c 'module --checkSyntax load {modules}'"
+
+        if self.debug:
+            print("Running command: ", cmd)
+
+        ret = subprocess.run(
+            cmd,
+            shell=True,
+            encoding="utf-8",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+        return ret.returncode
+
     def get_command(self):
         """Get the actual module load command that can be used to load the given modules.
 
