@@ -1,13 +1,13 @@
-|license| |docs| |codecov|  |slack|
+|license| |docs| |codecov|
 
 .. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
-    :target: https://lmodule.readthedocs.io/en/latest/?badge=latest
+    :target: https://readthedocs.org/projects/lmodule/builds/
     :alt: Documentation Status
 .. |license| image:: https://img.shields.io/github/license/buildtesters/lmodule.svg
+    :target: https://github.com/buildtesters/lmodule/blob/master/LICENSE
 .. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/buildtesters/lmodule
-.. |slack| image:: http://hpcbuildtest.herokuapp.com/badge.svg
-    :target: https://hpcbuildtest.slack.com
+
 
 Lmodule (Lmod Module)
 ---------------------
@@ -36,7 +36,7 @@ We encourage community feedback and participation to help improve the lmodule AP
 Slack
 ------
 
-Click the `Join Slack Channel <https://hpcbuildtest.herokuapp.com/>`_ to join the community.
+Click the `Join Slack Channel <https://communityinviter.com/apps/hpcbuildtest/buildtest-slack-invitation>`_ to join the community.
 If you already have an account then access the Slack Channel `here  <https://hpcbuildtest.slack.com>`_
 
 LICENSE
