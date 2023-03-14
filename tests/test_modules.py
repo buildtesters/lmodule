@@ -123,3 +123,12 @@ class TestModule:
 
         with pytest.raises(TypeError):
             a.spider(1)
+
+    def test_checkSyntax(self):
+        a = Module("lmod")
+        assert 0 == a.checkSyntax()
+
+        with pytest.raises(TypeError):
+            a.checkSyntax(1)
+
+        a.checkSyntax("lmod")
