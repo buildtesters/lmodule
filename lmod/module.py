@@ -204,6 +204,41 @@ class Module:
 
         return ret.stdout
 
+    def overview(self, name=None):
+        """This method implements the ``module overview`` command. The output of module overview will return list
+        of modules with number of versions available.
+
+        :param name: Specify a list of modules to run ``module overview`` command
+        :type name: str or list, optional
+        :return: Return output of ``module overview`` as a string
+        """
+
+        if name:
+            # raise error if input is not string or list
+            if not isinstance(name, (str, list)):
+                raise TypeError(f"{name} must be a string or list")
+
+            if isinstance(name, list):
+                name = " ".join([str(i) for i in name])
+
+            cmd = f"bash -l -c 'module overview {name}'"
+
+        elif self.modules:
+            cmd = f"bash -l -c 'module overview {' '.join(self.modules)}'"
+        else:
+            cmd = "bash -l -c 'module overview'"
+
+        ret = subprocess.run(
+            cmd,
+            shell=True,
+            encoding="utf-8",
+            universal_newlines=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+        return ret.stdout
+
     def version(self):
         """Get Lmod version by reading environment variable ``LMOD_VERSION`` and return as a string
 
