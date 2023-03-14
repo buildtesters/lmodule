@@ -1,4 +1,4 @@
-|license| |docs| |codecov|
+|license| |docs| |codecov| |pypi| |python|
 
 .. |docs| image:: https://readthedocs.org/projects/lmodule/badge/?version=latest
     :target: https://readthedocs.org/projects/lmodule/builds/
@@ -7,6 +7,10 @@
     :target: https://github.com/buildtesters/lmodule/blob/master/LICENSE
 .. |codecov| image:: https://codecov.io/gh/buildtesters/lmodule/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/buildtesters/lmodule
+.. |pypi| image:: https://img.shields.io/pypi/v/lmodule.svg
+    :target: https://pypi.org/project/lmodule/
+.. |python| image:: https://img.shields.io/pypi/pyversions/lmodule.svg
+    :target: https://pypi.org/project/lmodule/
 
 
 Lmodule (Lmod Module)
