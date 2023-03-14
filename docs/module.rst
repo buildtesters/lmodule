@@ -442,3 +442,40 @@ user collection are valid before using them in your script
     [DEBUG] Executing command: bash -l -c  'module restore zlib'
     [DEBUG] Return Code: 0
     0
+
+Check Syntax Error in modulefile
+---------------------------------
+
+Lmod supports ability to check for syntax error in modulefile via ``module --checkSyntax load`` command. This is useful
+when you are writing a modulefile and you want to ensure there is no syntax error before you load the modulefile. We
+can do this via Lmodule api as shown below. The **checkSyntax** method can be used to perform such operation.
+
+.. code-block:: python
+
+    >>> from lmod.module import Module
+    >>> m = Module('lmod')
+    >>> m.checkSyntax()
+    0
+
+You can also overide the default modules in the method definition by doing the following. Note that the argument
+must be a string
+
+.. code-block:: python
+
+    >>> from lmod.module import Module
+    >>> m = Module()
+    >>> m.checkSyntax('lmod')
+    0
+
+If you specify an invalid type other than string you will get an exception of `TypeError <https://docs.python.org/3/library/exceptions.html#TypeError>`_
+
+.. code-block:: python
+
+    >>> from lmod.module import Module
+    >>> m = Module()
+    >>> m.checkSyntax(1)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "/Users/siddiq90/Documents/github/lmodule/lmod/module.py", line 219, in checkSyntax
+        raise TypeError(f"{name} must be a string")
+    TypeError: 1 must be a string
