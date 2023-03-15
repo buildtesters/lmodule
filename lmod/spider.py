@@ -38,6 +38,9 @@ class Spider:
             out = subprocess.check_output(spider_cmd, shell=True).decode("utf-8")
             self.spider_content = json.loads(out)
 
+        if not self.spider_content:
+            raise SystemExit("No spider content found")
+
     def get_trees(self):
         """ "Return module trees used in spider command.
 

@@ -1,4 +1,6 @@
 import os
+import pytest
+
 from lmod.spider import Spider
 
 lmodule_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,9 +16,12 @@ class TestSpider:
         a = Spider()
         assert a.get_trees() == os.getenv("MODULEPATH")
 
-        tree = "/opt/apps/lmod/lmod/modulefiles/Core"
+        tree = "$LMOD_PKG/modulefiles/Core"
         b = Spider(tree)
         assert b.get_trees() == tree
+
+        with pytest.raises(SystemExit):
+            Spider("/xyz")
 
     def test_get_names(self):
         """Retrieve unique software from Spider class."""

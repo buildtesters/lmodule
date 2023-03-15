@@ -44,6 +44,9 @@ class TestModule:
         a.avail()
         a.avail("lmod")
 
+        a = Module(debug=False)
+        a.avail()
+
     def test_collection(self):
         cmd = Module(["settarg"], debug=True)
         # save as collection name "settarg"
@@ -62,6 +65,11 @@ class TestModule:
         user_collections = get_user_collections()
         print(user_collections)
         assert "settarg" in user_collections
+
+        cmd = Module(["lmod"], debug=False)
+        cmd.save()
+        cmd.describe()
+        cmd.test_collection()
 
     @pytest.mark.xfail(
         reason="Collection Name must be string when saving", raises=TypeError
@@ -132,6 +140,9 @@ class TestModule:
             a.checkSyntax(1)
 
         a.checkSyntax("lmod")
+
+        a = Module("lmod", debug=False)
+        a.checkSyntax()
 
     def test_module_overview(self):
         # module overview
