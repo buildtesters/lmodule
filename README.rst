@@ -34,8 +34,7 @@ We encourage community feedback and participation to help improve the lmodule AP
 
 - Join the slack community
 
-- Test the API and provide feedback in the form of `Issue <https://github.com/buildtesters/lmodule/issues>`_
-or `Pull Request <https://github.com/buildtesters/lmodule/pulls>`_.
+- Test the API and provide feedback in the form of `Issue <https://github.com/buildtesters/lmodule/issues>`_ or `Pull Request <https://github.com/buildtesters/lmodule/pulls>`_.
 
 
 Slack

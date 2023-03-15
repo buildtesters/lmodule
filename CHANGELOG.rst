@@ -1,3 +1,12 @@
+v0.4.0 - Mar 15th, 2023
+-------------------------
+
+- Add support for ``module overview`` command in Module class `#42 <https://github.com/buildtesters/lmodule/pull/42>`_
+- Add support for module syntax via ``module --checkSyntax load`` command in Module class `#39 <https://github.com/buildtesters/lmodule/pull/39>`_
+- Fix issue with ModuleLoadTest when no content from spider is empty list. This issue `#46 <https://github.com/buildtesters/lmodule/issues/46>`_ was addressed by `$47 <https://github.com/buildtesters/lmodule/pull/47>`_
+- Add support for testing multiple lmod versions in regression test `#45 <https://github.com/buildtesters/lmodule/pull/45>`_
+- Add support for acquiring test results from **ModuleLoadTest** class `#44 <https://github.com/buildtesters/lmodule/pull/44>`_
+
 v0.3.0 - Oct 18th, 2022
 -------------------------
 
@@ -7,8 +16,8 @@ v0.3.0 - Oct 18th, 2022
 - Update black setting in regression test, pre-commit and applying to source code `#31 <https://github.com/buildtesters/lmodule/pull/31>`_
 - Increase regression test coverage for `spider` class `#34 <https://github.com/buildtesters/lmodule/pull/34>`_
 
-v0.2.0 - Oct 24 2021
----------------------
+v0.2.0 - Oct 24th, 2021
+------------------------
 
 Add ``spider`` method in Module class which mimics ``module spider`` command. This was implemented in
 `#16 <https://github.com/buildtesters/lmodule/pull/16>`_
@@ -18,8 +27,8 @@ black integration (`#17 <https://github.com/buildtesters/lmodule/pull/17>`_) and
 running regression test (`#18 <https://github.com/buildtesters/lmodule/pull/18>`_)
 
 
-v0.1.0 - March 25 2020
-----------------------
+v0.1.0 - March 25th 2020
+-------------------------
 
 The first release of lmodule v0.1.0 includes three python classes: ``Module``, ``Spider``, and ``ModuleLoadTest``
 
