@@ -1,8 +1,11 @@
-v0.4.0 -
+v0.4.0 - Mar 15th, 2023
 -------------------------
 
 - Add support for ``module overview`` command in Module class `#42 <https://github.com/buildtesters/lmodule/pull/42>`_
 - Add support for module syntax via ``module --checkSyntax load`` command in Module class `#39 <https://github.com/buildtesters/lmodule/pull/39>`_
+- Fix issue with ModuleLoadTest when no content from spider is empty list. This issue `#46 <https://github.com/buildtesters/lmodule/issues/46>`_ was addressed by `$47 <https://github.com/buildtesters/lmodule/pull/47>`_
+- Add support for testing multiple lmod versions in regression test `#45 <https://github.com/buildtesters/lmodule/pull/45>`_
+- Add support for acquiring test results from **ModuleLoadTest** class `#44 <https://github.com/buildtesters/lmodule/pull/44>`_
 
 v0.3.0 - Oct 18th, 2022
 -------------------------
