@@ -1,5 +1,4 @@
 import os
-import sys
 from lmod.module import Module
 from lmod.spider import Spider
 
@@ -73,7 +72,9 @@ class ModuleLoadTest:
         self.modulecount = 0
 
         if self.count < 1:
-            sys.exit("Please specify a number greater than 0 in order to test modules")
+            raise SystemExit(
+                "Please specify a number greater than 0 in order to test modules"
+            )
 
         spider_cmd = Spider(self.tree)
         module_dict, modules = (
@@ -91,7 +92,7 @@ class ModuleLoadTest:
                     modules.remove(name)
 
         if not modules:
-            sys.exit(
+            raise SystemExit(
                 "Unable to test any modules either no modules were detected or search criteria was too restrictive"
             )
 
