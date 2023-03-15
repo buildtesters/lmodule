@@ -22,7 +22,7 @@ from sphinx.ext.apidoc import main as sphinx_apidoc
 # -- Project information -----------------------------------------------------
 
 project = "lmodule"
-copyright = "2020, Shahzeb Siddiqui"
+copyright = "2020-2023, Shahzeb Siddiqui"
 author = "Shahzeb Siddiqui"
 
 # The full version, including alpha/beta/rc tags
