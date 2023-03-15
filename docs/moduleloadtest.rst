@@ -96,41 +96,29 @@ Next we will show how we can filter modules while testing. Currently, we can fil
 and exclude modules by full canonical module name. This can be useful for site-administrators to tweak how behavior
 of ``ModuleLoadTest`` to their liking.
 
-For example, some sites may have some modules like ``VASP``, ``Matlab``, ``Gaussian`` that can only be loaded
-by a specific unix group because site-administrator want to restrict this software to be loaded by anyone and end
-up running the software which may take up a license seat.
-
-To filter by module names you can pass ``name`` option which is a list of software names to test.
+To filter by module names you can pass ``name`` option which is a list of software names to test. In example, below we will test for all
+modules `gcc` and `autoconf`.
 
 .. code-block:: python
 
-    >>> g = ModuleLoadTest("/mxg-hpc/users/ssi29/easybuild/modules/all",name=["Automake","Bison"])
-    Testing the Following Module Trees: /mxg-hpc/users/ssi29/easybuild/modules/all
+    >>> ModuleLoadTest(name=["gcc","autoconf"],login=True)
+    Testing the Following Module Trees: /Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core:/usr/local/Cellar/lmod/8.6.14/modulefiles/Darwin:/usr/local/Cellar/lmod/8.6.14/modulefiles/Core
     ________________________________________________________________________________
-    PASSED -  Module Name: Automake/1.16.1-GCCcore-8.3.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Automake/1.16.1-GCCcore-8.3.0.lua )
-    PASSED -  Module Name: Automake/1.15.1-GCCcore-6.4.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Automake/1.15.1-GCCcore-6.4.0.lua )
-    PASSED -  Module Name: Bison/3.0.5 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.5.lua )
-    PASSED -  Module Name: Bison/3.0.4-GCCcore-7.1.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.4-GCCcore-7.1.0.lua )
-    PASSED -  Module Name: Bison/3.0.4 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.4.lua )
-    PASSED -  Module Name: Bison/3.3.2 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.3.2.lua )
-    PASSED -  Module Name: Bison/3.2.2-GCCcore-7.4.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.2.2-GCCcore-7.4.0.lua )
-    PASSED -  Module Name: Bison/3.0.4-GCCcore-6.4.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.4-GCCcore-6.4.0.lua )
-    PASSED -  Module Name: Bison/3.0.4-GCCcore-8.1.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.4-GCCcore-8.1.0.lua )
-    PASSED -  Module Name: Bison/3.0.5-GCCcore-6.4.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.5-GCCcore-6.4.0.lua )
-    PASSED -  Module Name: Bison/3.3.2-GCCcore-8.3.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.3.2-GCCcore-8.3.0.lua )
-    PASSED -  Module Name: Bison/3.0.5-GCCcore-8.1.0 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/Bison/3.0.5-GCCcore-8.1.0.lua )
+    PASSED -  Module Name: autoconf/2.69-3yrvwbu ( modulefile=/Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core/autoconf/2.69-3yrvwbu.lua )
+    PASSED -  Module Name: gcc/9.3.0-n7p74fd ( modulefile=/Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core/gcc/9.3.0-n7p74fd.lua )
+    PASSED -  Module Name: gcc/10.2.0-37fmsw7 ( modulefile=/Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core/gcc/10.2.0-37fmsw7.lua )
 
 
-Note, when you use ``name`` it will test all modules with the name ``Automake`` and ``Bison`` found in all module trees.
+Note, when you use ``name`` it will test all modules that match the name, found in all module trees.
 If you would like to filter and include by a full canonical name you can specify the ``include`` option. Shown below
-we will only test module ``CUDA/10.0.130``.
+we will test module ``gcc/9.3.0-n7p74fd``.
 
 .. code-block:: python
 
-    >>> h = ModuleLoadTest("/mxg-hpc/users/ssi29/easybuild/modules/all",include=["CUDA/10.0.130"])
-    Testing the Following Module Trees: /mxg-hpc/users/ssi29/easybuild/modules/all
+    >>> ModuleLoadTest(include=['gcc/9.3.0-n7p74fd'],login=True)
+    Testing the Following Module Trees: /Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core:/usr/local/Cellar/lmod/8.6.14/modulefiles/Darwin:/usr/local/Cellar/lmod/8.6.14/modulefiles/Core
     ________________________________________________________________________________
-    PASSED -  Module Name: CUDA/10.0.130 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/CUDA/10.0.130.lua )
+    PASSED -  Module Name: gcc/9.3.0-n7p74fd ( modulefile=/Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core/gcc/9.3.0-n7p74fd.lua )
 
 Likewise, we can exclude module by full canonical name using the ``exclude`` argument which is a list of module names. In
 example below we test the module tree ``"/usr/share/lmod/lmod/modulefiles/Core"`` which comes with ``lmod`` and ``settarg``
@@ -138,28 +126,47 @@ typically found when installing Lmod. In the second example we exclude ``lmod`` 
 
 .. code-block:: python
 
-    >>> a = ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core")
+    >>> ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core")
     Testing the Following Module Trees: /usr/share/lmod/lmod/modulefiles/Core
     ________________________________________________________________________________
     PASSED -  Module Name: lmod ( modulefile=/usr/share/lmod/lmod/modulefiles/Core/lmod.lua )
     PASSED -  Module Name: settarg ( modulefile=/usr/share/lmod/lmod/modulefiles/Core/settarg.lua )
 
-    >>> b = ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core",exclude=["lmod"])
+    >>> ModuleLoadTest("/usr/share/lmod/lmod/modulefiles/Core",exclude=["lmod"])
     Testing the Following Module Trees: /usr/share/lmod/lmod/modulefiles/Core
     ________________________________________________________________________________
     PASSED -  Module Name: settarg ( modulefile=/usr/share/lmod/lmod/modulefiles/Core/settarg.lua )
 
 
-If you pass ``include`` and ``exclude`` to *ModuleLoadTest*, then *include* will take precedence and *exclude*
-list will be ignored. Since these are mutually exclusive options use either arguments but don't use both at same time.
+If you pass ``include`` and ``exclude`` to *ModuleLoadTest*, we perform the include operation first by filtering files
+followed by excluding files from list. Therefore, if you run the following example, where we include ``lmod`` and ``settarg``
+but also exclude ``lmod``, we will see that ``lmod`` is not tested.
 
 .. code-block:: python
 
-    >>> a = ModuleLoadTest(include=["CUDA/10.0.130","Bison/3.0.4"],exclude=["lmod"])
-    Testing the Following Module Trees: /mxg-hpc/users/ssi29/easybuild-HMNS/modules/all/Core:/mxg-hpc/users/ssi29/spack/modules/linux-rhel7-x86_64/Core:/mxg-hpc/users/ssi29/easybuild/modules/all:/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+    >>>  ModuleLoadTest(name=["lmod","settarg"],exclude=['lmod'], login=True)
+    Testing the Following Module Trees: /Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core:/usr/local/Cellar/lmod/8.6.14/modulefiles/Darwin:/usr/local/Cellar/lmod/8.6.14/modulefiles/Core
     ________________________________________________________________________________
-    PASSED -  Module Name: Bison/3.0.4 ( modulefile=/mxg-hpc/users/ssi29/easybuild-HMNS/modules/all/Core/Bison/3.0.4.lua )
-    PASSED -  Module Name: CUDA/10.0.130 ( modulefile=/mxg-hpc/users/ssi29/easybuild/modules/all/CUDA/10.0.130.lua )
+    PASSED -  Module Name: settarg ( modulefile=/usr/local/Cellar/lmod/8.6.14/modulefiles/Core/settarg.lua )
+
+Get Test Results
+-----------------
+
+The **get_results** method returns a dictionary of results which can be useful if you want to know number of pass and failed test.
+In this next example, we will invoke the class and call ``get_results`` method which returns the test results.
+
+.. code-block:: python
+
+    >>> test = ModuleLoadTest(name=["lmod","settarg"], login=True)
+    Testing the Following Module Trees: /Users/siddiq90/projects/spack/share/spack/lmod/darwin-catalina-x86_64/Core:/usr/local/Cellar/lmod/8.6.14/modulefiles/Darwin:/usr/local/Cellar/lmod/8.6.14/modulefiles/Core
+    ________________________________________________________________________________
+    PASSED -  Module Name: lmod ( modulefile=/usr/local/Cellar/lmod/8.6.14/modulefiles/Core/lmod.lua )
+    PASSED -  Module Name: settarg ( modulefile=/usr/local/Cellar/lmod/8.6.14/modulefiles/Core/settarg.lua )
+    >>> test.get_results()
+    {'passed': 2, 'failed': 0, 'total': 2, 'rate': 1.0}
+
+You can use this method to help write your test, for instance you may want to write a test that checks if 'rate' is 1.0 which indicates
+**100%** pass, or you can set a threshold such as 0.9 which indicates 90% pass.
 
 Test Modules in Login Shell
 ----------------------------
@@ -188,3 +195,20 @@ actual command using login shell.
     [DEBUG] Return Code: 0
     PASSED -  Module Name: settarg ( modulefile=/usr/share/lmod/lmod/modulefiles/Core/settarg.lua )
 
+
+Edge Cases
+-----------
+
+If you specify ``count=0``, which controls number of modules to test, you will get an error during testing with the following message
+
+.. code-block:: python
+
+    >>> ModuleLoadTest(count=0)
+    Please specify a number greater than 0 in order to test modules
+
+Alternatively, if you specify a search criteria or MODULEPATH to tree where no modules are detected, you will get an error message
+
+.. code-block:: python
+
+    >>> ModuleLoadTest(include=['foo'])
+    Unable to test any modules either no modules were detected or search criteria was too restrictive
