@@ -1,4 +1,5 @@
 import os
+import pytest
 from lmod.moduleloadtest import ModuleLoadTest
 
 
@@ -16,13 +17,17 @@ class TestModuleLoadTest:
         ModuleLoadTest(exclude=["lmod"])
 
     def test_filter_include_exclude(self):
-        ModuleLoadTest(include=["lmod"], exclude=["lmod"])
+        with pytest.raises(SystemExit):
+            ModuleLoadTest(include=["lmod"], exclude=["lmod"])
 
     def test_filter_name(self):
         ModuleLoadTest(name=["lmod", "settarg"])
 
     def test_by_count(self):
-        ModuleLoadTest(count=1)
+        m = ModuleLoadTest(count=1)
+        m.get_results()
+        with pytest.raises(SystemExit):
+            ModuleLoadTest(count=0)
 
     def test_debug(self):
         ModuleLoadTest(debug=True)

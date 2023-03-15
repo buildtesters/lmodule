@@ -1,4 +1,5 @@
 import os
+import sys
 from lmod.module import Module
 from lmod.spider import Spider
 
@@ -66,7 +67,13 @@ class ModuleLoadTest:
         self.name = name
         self.include = include
         self.exclude = exclude
-        filter_modules = None
+
+        self.failed = 0
+        self.passed = 0
+        self.modulecount = 0
+
+        if self.count < 1:
+            sys.exit("Please specify a number greater than 0 in order to test modules")
 
         spider_cmd = Spider(self.tree)
         module_dict, modules = (
@@ -75,15 +82,18 @@ class ModuleLoadTest:
         )
 
         if self.include:
-            filter_modules = set(self.include).intersection(modules)
+            modules = [module for module in modules if module in self.include]
 
         # only do exclusion if include list is not specified
-        if self.exclude and not self.include:
-            filter_modules = set(modules).difference(self.exclude)
+        if self.exclude:
+            for name in self.exclude:
+                if name in modules:
+                    modules.remove(name)
 
-        modules = filter_modules or modules
-
-        modulecount = 0
+        if not modules:
+            sys.exit(
+                "Unable to test any modules either no modules were detected or search criteria was too restrictive"
+            )
 
         print(f"Testing the Following Module Trees: {self.tree}")
         print("{:_<80}".format(""))
@@ -108,13 +118,30 @@ class ModuleLoadTest:
                 print(
                     f"PASSED -  Module Name: {module_name} ( modulefile={modulefile} )"
                 )
+                self.passed += 1
             else:
                 print(
                     f"FAILED -  Module Name: {module_name} ( modulefile={modulefile} )"
                 )
+                self.failed += 1
 
-            modulecount += 1
+            self.modulecount += 1
 
             # terminate module load test once we have tested up to specified count
-            if self.count <= modulecount:
+            if self.count <= self.modulecount:
                 return
+
+    def get_results(self):
+        """This method returns a dictionary of test results
+
+        :return: dictionary of test results
+        :rtype: dict
+        """
+        return {
+            "passed": self.passed,
+            "failed": self.failed,
+            "total": self.modulecount,
+            "rate": self.passed / self.modulecount
+            if self.modulecount
+            else float("nan"),
+        }
