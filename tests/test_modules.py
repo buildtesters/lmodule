@@ -40,7 +40,7 @@ class TestModule:
         a.version()
 
     def test_avail(self):
-        a = Module()
+        a = Module(debug=True)
         a.avail()
         a.avail("lmod")
 
@@ -125,7 +125,7 @@ class TestModule:
             a.spider(1)
 
     def test_checkSyntax(self):
-        a = Module("lmod")
+        a = Module("lmod", debug=True)
         assert 0 == a.checkSyntax()
 
         with pytest.raises(TypeError):
