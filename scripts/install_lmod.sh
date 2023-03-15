@@ -12,7 +12,7 @@ PKG_URL="https://github.com/TACC/Lmod/archive/${VERSION}.tar.gz"
 export PATH=$PREFIX/lmod/$VERSION/libexec:$PATH
 export MOD_INIT=$PREFIX/lmod/$VERSION/init/profile
 
-sudo apt-get install lua5.3 liblua5.3-0 liblua5.3-0-dev lua-posix-dev lua-posix tcl tcl-dev tcl8.6 tcl8.6-dev lua-term lua-json lua-filesystem
+sudo apt-get install lua5.3 lua-posix-dev lua-posix tcl tcl-dev tcl8.6 tcl8.6-dev lua-term lua-json lua-filesystem
 
 
 echo "Installing ${LMOD_PACKAGE} @ ${PREFIX}..."
