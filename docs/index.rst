@@ -55,6 +55,16 @@ Here are few reasons why you would want to use lmodule
    examples.rst
    api.rst
 
+Presentations
+-------------
+
+.. csv-table::
+    :header: "Conference", "Talk", "Date", "Link"
+    :widths:  40, 50, 20, 20
+
+    "`Improving Scientific Software Conference 2023 <https://sea.ucar.edu/conference/2023>`_", "**Lmodule - Python API for testing modules**", "Feb 17th 2023", "`PPTX <https://docs.google.com/presentation/d/1JP-QWOUh5KrGNs0gPjI0jfqKfUMBQEt1/edit?usp=share_link&ouid=102126664227037583807&rtpof=true&sd=true>`_"
+    "`EasyBuild User Meeting <https://easybuild.io/eum/>`_", "**Automate Module Testing with Lmodule**", "Jan 29th 2021", "`PDF <https://drive.google.com/file/d/1Jvi8w0g4NzO2daRWi-bDXZl6LQdZ_q_4/view?usp=share_link>`_,  `Video <https://www.youtube.com/watch?v=RyUhPSzIrqQ&list=PLhnGtSmEGEQh0pCtmkFQsDzeoo6tbYnyZ&index=30>`_"
+
 
 
 Indices and tables
