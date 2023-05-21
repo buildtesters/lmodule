@@ -1,7 +1,7 @@
 black
 codecov
 coverage
-docutils==0.16
+docutils==0.20.1
 pre-commit
 pytest
 Sphinx
